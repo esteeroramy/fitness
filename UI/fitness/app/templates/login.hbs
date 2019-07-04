@@ -1,0 +1,72 @@
+<div class="login-page">
+    <div class="login-form">
+        <div class="row no-bottom-margin">
+            <div class="col-12">
+                <img src="assets/images/logo.png" alt={{t "application.name"}} class="website-logo">
+            </div>
+        </div>
+        <div class="row no-bottom-margin">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="input-field white-field">
+                    {{input
+                        type="text"
+                        id="username"
+                        value=username}}
+                    <label for="username">{{t "userFields.username"}}</label>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        {{#unless isUsernamePresenceValid}}
+            <div class="row no-bottom-margin">
+                <div class="col-1"></div>
+                <div class="col-10 error">
+                    {{t "errors.required" field="username"}}
+                </div>
+                <div class="col-1"></div>
+            </div>
+        {{/unless}}
+        <div class="row no-bottom-margin">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="input-field white-field">
+                    {{input
+                        type="password"
+                        id="password"
+                        value=password}}
+                    <label for="password">{{t "userFields.password"}}</label>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+        {{#unless isPasswordPresenceValid}}
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10 error">
+                    {{t "errors.required" field="password"}}
+                </div>
+                <div class="col-1"></div>
+            </div>
+        {{/unless}}
+        {{#if loginErrorMessage}}
+            <div class="row">
+                <div class="col-md-12 error text-center">
+                    {{loginErrorMessage}}
+                </div>
+            </div>
+        {{/if}}
+        {{#if isLoading}}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    {{partial "loading-spinner"}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="waves-effect waves-light btn login-button" onClick={{action "login"}}>{{t "loginPage.login"}}</a>
+            </div>
+        </div>
+    </div>
+</div>

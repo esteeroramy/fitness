@@ -1,0 +1,17 @@
+@import "ember-bootstrap/bootstrap";
+
+@import "variables";
+
+@import "common";
+@import "helpers";
+@import "routes";
+@import "templates";
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body > .ember-view {
+    height: 100%;
+}

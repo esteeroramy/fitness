@@ -1,4 +1,8 @@
 const date = require('moment');
+const jwt = require('jsonwebtoken');
+const uuidv1 = require('uuid/v1');
+
+const config = require('./config.js');
 
 /**
  * Errors
@@ -17,7 +21,9 @@ const errors = Object.freeze({
     2001: 'failed to find user, database issue',
     2002: 'invalid user parameters',
     2003: 'user already exists in the database',
-    2004: 'incorrect username or password'
+    2004: 'incorrect username or password',
+    2005: 'failed to start session',
+    2006: 'invalid login parameters'
 });
 exports.errors = errors;
 
@@ -33,7 +39,9 @@ const errorStatusCodes = Object.freeze({
     2001: 500,
     2002: 422,
     2003: 409,
-    2004: 404
+    2004: 404,
+    2005: 500,
+    2006: 422
 })
 exports.errorStatusCodes = errorStatusCodes;
 
@@ -115,6 +123,16 @@ const getStatus = function(errorObject) {
 exports.getStatus = getStatus;
 
 /**
+ * Returns a unique ID
+ * 
+ * @returns {String} The ID
+ */
+const getUUID = function() {
+    return uuidv1();
+};
+exports.getUUID = getUUID;
+
+/**
  * Checks if a string is empty
  *
  * @param {String} text string to check if its empty
@@ -124,3 +142,43 @@ const isEmptyString = function(text) {
     return text.trim().length === 0;
 };
 exports.isEmptyString = isEmptyString;
+
+/**
+ * Verifies that the token is valid
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ * @param {Function} next 
+ */
+const setVerificationToken = function(req, res, next) {
+    const bearerHeader = req.headers.authorization;
+
+    if (bearerHeader === variableTypes.UNDEFINED) {
+        res.sendStatus(403);
+    }
+
+    const bearer = bearerHeader.split(' ');
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+
+    next();
+}
+exports.setVerificationToken = setVerificationToken;
+
+/**
+ * Verifies that a token is valid. If it is the callback function is called.
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ * @param {Function} callback 
+ */
+const verifyToken = function(req, res, callback) {
+    jwt.verify(req.token, config.secret, (err, _) => {
+        if (err) {
+            res.sendStatus(403);
+        }
+
+        callback(req, res);
+    })
+}
+exports.verifyToken = verifyToken;

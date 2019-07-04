@@ -1,0 +1,26 @@
+application:
+    name: 'Fitness'
+errorCodes:
+    1000: 'Invalid request'
+    1001: 'Server error, please try again later'
+    1002: 'Server error, please try again later'
+    2000: 'Failed to create user'
+    2001: 'User could not be found'
+    2002: 'Invalid parameters'
+    2003: 'User already exists'
+    2004: 'Incorrect username or password'
+    2005: 'Failed to start session, please try again later'
+    2006: 'Invalid username or password'
+    unknown: 'Unknown Error'
+errors:
+    required: |-
+        {field, select,
+            username {Username}
+            password {Password}
+            other {This field}
+        } is required
+loginPage:
+    login: 'Login'
+userFields:
+    password: 'Password'
+    username: 'Username'

@@ -1,1 +1,28 @@
+#################### server ####################
+
 node_modules
+
+#################### UI ####################
+# compiled output
+/UI/fitness/dist/
+/UI/fitness/tmp/
+
+# dependencies
+/UI/fitness/bower_components/
+/UI/fitness/node_modules/
+
+# misc
+/UI/fitness/.env*
+/UI/fitness/.pnp*
+/UI/fitness/.sass-cache
+/UI/fitness/connect.lock
+/UI/fitness/coverage/
+/UI/fitness/libpeerconnection.log
+/UI/fitness/npm-debug.log*
+/UI/fitness/testem.log
+/UI/fitness/yarn-error.log
+
+# ember-try
+/UI/fitness/.node_modules.ember-try/
+/UI/fitness/bower.json.ember-try
+/UI/fitness/package.json.ember-try

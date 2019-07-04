@@ -1,0 +1,26 @@
+.input-field {
+    &.white-field {
+        input {
+            color: white;
+        }
+    
+        label {
+            color: #FFFFFF !important;
+        }
+    
+        input:focus + label {
+            color: #FFFFFF !important;
+        }
+    
+        input:focus {
+            border-bottom: 1px solid #FFFFFF !important;
+            box-shadow: none !important;
+        }
+    
+        .prefix {
+            .active {
+                color: #FFFFFF !important;
+            }
+        }
+    }
+}
