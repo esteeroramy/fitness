@@ -1,4 +1,5 @@
 const bodyParsesr = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 
 const api = require('./API/api-handler.js');
@@ -6,6 +7,8 @@ const config = require('./config.js')
 const db = require('./Backend/db.js');
 
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParsesr.urlencoded({
     extended: false

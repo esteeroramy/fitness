@@ -1,0 +1,42 @@
+.login-page {
+    background-image: url("images/login-wallpaper.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+
+    .login-form {
+        background-color: rgba(197, 197, 197, 0.25);
+        border-radius: 10px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        .website-logo {
+            width: 100%;
+        }
+
+        .login-button {
+            background-color: #3EBACC;
+            color: white;
+            padding: 5px 30px;
+        }
+
+        .login-button:hover {
+            background-color: #32A3AF;
+            color: white;            
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .login-form {
+            width: 80%;
+
+            .login-button {
+                padding: 5px 15px;
+            }
+        }
+    }
+}

@@ -11,9 +11,12 @@ const user = require('./models/user');
 const createUser = function(userObject, callback) {
     let newUser = new user();
 
+    newUser._id = userObject._id;
+    newUser.ctime = userObject.ctime;
     newUser.email = userObject.email;
     newUser.fname = userObject.fname;
     newUser.lname = userObject.lname;
+    newUser.mtime = userObject.mtime;
     newUser.password = userObject.password;
     newUser.unit = userObject.unit;
     newUser.username = userObject.username;

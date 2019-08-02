@@ -6,6 +6,7 @@ const measuringUnits = Object.values(common.measuringUnits);
 
 // User Schema
 let userSchema = mongoose.Schema({
+    _id: String,
     ctime: Date,
     email: String,
     fname: String,

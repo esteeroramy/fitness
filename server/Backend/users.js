@@ -11,33 +11,10 @@ const db = require('./db.js');
  * @returns {Function} callback
  */
 const createUser = function(userObject, callback) {
-    const measuringUnits = Object.values(common.measuringUnits);
     const { 
-        email,
-        fname,
-        lname,
         password,
-        unit,
         username,
-        weight = 0
     } = userObject;
-
-    if (typeof(email) !== common.variableTypes.STRING ||
-        typeof(fname) !== common.variableTypes.STRING ||
-        typeof(lname) !== common.variableTypes.STRING ||
-        typeof(password) !== common.variableTypes.STRING ||
-        typeof(unit) !== common.variableTypes.STRING ||
-        typeof(username) !== common.variableTypes.STRING ||
-        typeof(weight) !== common.variableTypes.NUMBER ||
-        common.isEmptyString(email) ||
-        common.isEmptyString(fname) ||
-        common.isEmptyString(lname) ||
-        common.isEmptyString(password) ||
-        common.isEmptyString(unit) ||
-        common.isEmptyString(username) ||
-        !measuringUnits.includes(unit)) {
-            return callback(common.getError(2002), null);
-    }
 
     bcrypt.hash(password, 11, function(err, hash) {
         if (err) {
@@ -49,6 +26,7 @@ const createUser = function(userObject, callback) {
         userObject.ctime = currentDate;
         userObject.mtime = currentDate;
         userObject.password = hash;
+        userObject._id = common.getUUID();
 
         db.getUserByUsername({ username }, (err, existingUser) => {
             if (err) {
