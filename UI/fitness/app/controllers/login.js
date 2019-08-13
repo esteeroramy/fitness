@@ -4,7 +4,6 @@ import { isPresent } from '@ember/utils';
 
 export default Controller.extend({
     exceptionHandler: service(),
-    intl: service(),
     session: service(),
 
     /**
@@ -73,12 +72,23 @@ export default Controller.extend({
     },
 
     /**
+     * Rests the values in the fields
+     */
+    resetFields() {
+        this.setProperties({
+            username: '',
+            password: ''
+        });
+    },
+
+    /**
      * Resets the validation fields
      */
     resetValidation() {
         this.setProperties({
             isUsernamePresenceValid: true,
-            isPasswordPresenceValid: true
+            isPasswordPresenceValid: true,
+            loginErrorMessage: null
         });
     },
 

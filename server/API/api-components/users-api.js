@@ -12,6 +12,7 @@ const config = require('../../config.js')
  * @param {Object} res 
  */
 const createUser = (req, res) => {
+    const confirmedPassword = xss(req.body.confirmedPassword);
     const email = xss(req.body.email);
     const fname = xss(req.body.fname);
     const lname = xss(req.body.lname);
@@ -35,6 +36,8 @@ const createUser = (req, res) => {
         common.isEmptyString(password) ||
         common.isEmptyString(unit) ||
         common.isEmptyString(username) ||
+        !common.isValidEmail(email) ||
+        password !== confirmedPassword ||
         !measuringUnits.includes(unit)) {
             return res.status(common.getStatus(2002)).send(common.getError(2002));
     }

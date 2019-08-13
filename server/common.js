@@ -115,6 +115,8 @@ const getStatus = function(errorObject) {
         typeof(message) === variableTypes.STRING &&
         errors[code] === errorObject.message) {
             return errorStatusCodes[code];
+    } else if (typeof(errorObject) === variableTypes.NUMBER) {
+        return errorStatusCodes[errorObject];
     }
 
     // unknown error
@@ -142,6 +144,17 @@ const isEmptyString = function(text) {
     return text.trim().length === 0;
 };
 exports.isEmptyString = isEmptyString;
+
+/**
+ * Checks if an email is valid
+ *
+ * @param {String} text email to check
+ * @return {Boolean}
+ */
+const isValidEmail = function(email) {
+    return /\S+@\S+\.\S+/.test(email);
+};
+exports.isValidEmail = isValidEmail;
 
 /**
  * Verifies that the token is valid

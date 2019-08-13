@@ -30,6 +30,8 @@ export default Service.extend({
     getErrorMessage(exception) {
         if (isPresent(exception) && isPresent(exception.responseJSON) && isPresent(exception.responseJSON.code)) {
             return this.get('intl').t(`errorCodes.${exception.responseJSON.code}`);
+        } else if (isPresent(exception) && isPresent(exception.errors) && (exception.errors.length > 0) && isPresent(exception.errors[0].code)) {
+            return this.get('intl').t(`errorCodes.${exception.errors[0].code}`);
         }
 
         return this.get('intl').t('errorCodes.unknown');

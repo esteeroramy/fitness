@@ -28,6 +28,24 @@
             background-color: #32A3AF;
             color: white;            
         }
+
+        .register-button {
+            a:link {
+                color: #32A3AF;
+            }
+
+            a:visited {
+                color: #32A3AF;
+            }
+
+            a:hover {
+                color: #0E8C99;
+            }
+
+            a:active {
+                color: #32A3AF;
+            }
+        }
     }
 
     @media screen and (max-width: 600px) {
