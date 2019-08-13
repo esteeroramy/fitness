@@ -13,14 +13,44 @@ errorCodes:
     2006: 'Invalid username or password'
     unknown: 'Unknown Error'
 errors:
+    match: |-
+        {field, select,
+            confirmedPassword {Passwords}
+            other {These fields}
+        } do not match
     required: |-
         {field, select,
-            username {Username}
+            confirmedPassword {Confirm password}
+            email {Email}
+            firstName {First name}
+            lastName {Last name}
             password {Password}
+            username {Username}
+            weight {Weight}
             other {This field}
         } is required
+    value: |-
+        {field, select,
+            email {Invalid email}
+            weight {Weight must be a number greater than 0}
+            other {This field is not valid}
+        }
 loginPage:
     login: 'Login'
+    register: 'Don''t have an account? Register'
+registerPage:
+    login: "Already have an account? Login"
+    register: 'Register'
+    title: "Register"
 userFields:
+    confirmedPassword: 'Confirm Password'
+    email: 'Email'
+    firstName: 'First Name'
+    lastName: 'Last Name'
     password: 'Password'
     username: 'Username'
+    weight: 'Body Weight'
+    weightUnit: 'Weight Unit'
+weightUnits:
+    kg: 'Kg'
+    lb: 'Lb'

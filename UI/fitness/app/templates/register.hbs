@@ -1,0 +1,200 @@
+<div class="register">
+    <div class="register-form col-10 col-md-8 col-lg-6">
+        <div class="row no-bottom-margin">
+            <div class="col-12 title text-center">
+                {{t "registerPage.title"}}
+            </div>
+        </div>
+        <div class="row no-bottom-margin">
+            <div class="offset-1 col-10">
+                <div class="input-field white-field">
+                    {{input
+                        type="text"
+                        id="username"
+                        value=username}}
+                    <label for="username">{{t "userFields.username"}}</label>
+                </div>
+            </div>
+        </div>
+        {{#unless isUsernamePresenceValid}}
+            <div class="row no-bottom-margin">
+                <div class="offset-1 col-10 error">
+                    {{t "errors.required" field="username"}}
+                </div>
+            </div>
+        {{/unless}}
+        <div class="row no-bottom-margin">
+            <div class="offset-1 col-10 col-sm-5">
+                <div class="row no-bottom-margin">
+                    <div class="col-12">
+                        <div class="input-field white-field">
+                            {{input
+                                type="password"
+                                id="password"
+                                value=password}}
+                            <label for="password">{{t "userFields.password"}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin">
+                    <div class="col-12 error">
+                        {{#unless isPasswordPresenceValid}}
+                            {{t "errors.required" field="password"}}
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+            <div class="offset-1 offset-sm-0 col-10 col-sm-5">
+                <div class="row no-bottom-margin">
+                    <div class="col-12">
+                        <div class="input-field white-field">
+                            {{input
+                                type="password"
+                                id="confirmedPassword"
+                                value=confirmedPassword}}
+                            <label for="confirmedPassword">{{t "userFields.confirmedPassword"}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin">
+                    <div class="col-12 error">
+                        {{#unless isConfirmedPasswordPresenceValid}}
+                            {{t "errors.required" field="confirmedPassword"}}
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#unless (and isPasswordPresenceValid isConfirmedPasswordPresenceValid isConfirmedPasswordValueValid)}}
+            <div class="row no-bottom-margin">
+                <div class="offset-1 col-10 error">
+                    {{#if (and isPasswordPresenceValid isConfirmedPasswordPresenceValid (not isConfirmedPasswordValueValid))}}
+                        {{t "errors.match" field="confirmedPassword"}}
+                    {{/if}}
+                </div>
+            </div>
+        {{/unless}}
+        <div class="row no-bottom-margin">
+            <div class="offset-1 col-10 col-sm-5">
+                <div class="row no-bottom-margin">
+                    <div class="col-12">
+                        <div class="input-field white-field">
+                            {{input
+                                type="text"
+                                id="fname"
+                                value=fname}}
+                            <label for="fname">{{t "userFields.firstName"}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin">
+                    <div class="col-12 error">
+                        {{#unless isFNamePresenceValid}}
+                            {{t "errors.required" field="firstName"}}
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+            <div class="offset-1 offset-sm-0 col-10 col-sm-5">
+                <div class="row no-bottom-margin">
+                    <div class="col-12">
+                        <div class="input-field white-field">
+                            {{input
+                                type="text"
+                                id="lname"
+                                value=lname}}
+                            <label for="lname">{{t "userFields.lastName"}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-bottom-margin">
+                    <div class="col-12 error">
+                        {{#unless isLNamePresenceValid}}
+                            {{t "errors.required" field="lastName"}}
+                        {{/unless}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row no-bottom-margin">
+            <div class="offset-1 col-10">
+                <div class="input-field white-field">
+                    {{input
+                        type="text"
+                        id="email"
+                        value=email}}
+                    <label for="email">{{t "userFields.email"}}</label>
+                </div>
+            </div>
+        </div>
+        {{#if  (not isEmailPresenceValid)}}
+            <div class="row">
+                <div class="offset-1 col-10 error">
+                    {{t "errors.required" field="email"}}
+                </div>
+            </div>
+        {{else if (not isEmailValueValid)}}
+            <div class="row">
+                <div class="offset-1 col-10 error">
+                    {{t "errors.value" field="email"}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="row no-bottom-margin">
+            <div class="offset-1 col-10 col-sm-5">
+                <div class="input-field white-field">
+                    <select>
+                        <option value="kg" selected>{{t "weightUnits.kg"}}</option>
+                        <option value="lb">{{t "weightUnits.lb"}}</option>
+                    </select>
+                    <label>{{t "userFields.weightUnit"}}</label>
+                </div>
+            </div>
+            <div class="offset-1 offset-sm-0 col-10 col-sm-5">
+                <div class="row no-bottom-margin">
+                    <div class="col-12">
+                        <div class="input-field white-field">
+                            {{input
+                                id="weight"
+                                value=weight}}
+                            <label for="weight">{{t "userFields.weight"}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 error">
+                        {{#if (not isWeightPresenceValid)}}
+                            {{t "errors.required" field="weight"}}
+                        {{else if (not isWeightValueValid)}}
+                            {{t "errors.value" field="weight"}}
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if registerErrorMessage}}
+            <div class="row">
+                <div class="col-md-12 error text-center">
+                    {{registerErrorMessage}}
+                </div>
+            </div>
+        {{/if}}
+        {{#if registerUserTask.isRunning}}
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    {{partial "loading-spinner"}}
+                </div>
+            </div>
+        {{/if}}
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="waves-effect waves-light btn register-button" onClick={{perform registerUserTask}}>{{t "registerPage.register"}}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="login-button">{{#link-to "login"}}{{t "registerPage.login"}}{{/link-to}}</a>
+            </div>
+        </div>
+    </div>
+</div>

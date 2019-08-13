@@ -4,6 +4,10 @@ import unauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 export default Route.extend(unauthenticatedRouteMixin, {
     routeIfAlreadyAuthenticated: 'home',
 
+    setupController(controller) {
+        controller.setupFormFields();
+    },
+
     resetController(controller, isExiting) {
         if (isExiting) {
             controller.resetFields();
@@ -11,3 +15,4 @@ export default Route.extend(unauthenticatedRouteMixin, {
         }
     }
 });
+
