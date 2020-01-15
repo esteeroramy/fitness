@@ -1,0 +1,47 @@
+{
+    "application": {
+        "name": "Fitness"
+    },
+    "errorCodes": {
+        "1000": "Invalid request",
+        "1001": "Server error, please try again later",
+        "1002": "Server error, please try again later",
+        "2000": "Failed to create user",
+        "2001": "User could not be found",
+        "2002": "Invalid parameters",
+        "2003": "User already exists",
+        "2004": "Incorrect username or password",
+        "2005": "Failed to start session, please try again later",
+        "2006": "Invalid username or password",
+        "unknown": "Unknown Error"
+    },
+    "errors": {
+        "confirmPasswordRequired": "Confirm password is required",
+        "emailRequired": "Email is required",
+        "firstNameRequired": "First name is required",
+        "invalidEmail": "Email is not valid",
+        "lastNameRequired": "Last name is required",
+        "passwordRequired": "Password is required",
+        "passwordsDoNotMatch": "Passwords don't match",
+        "usernameRequired": "Username is required"
+    },
+    "loginPage": {
+        "createAccount": "Create Account",
+        "noAccount": "Don't have an account?",
+        "login": "Login"
+    },
+    "signUpPage": {
+        "createAccount": "Create Account",
+        "haveAccount": "Already have an account?",
+        "login": "Login",
+        "signUp": "Signup"
+    },
+    "userFields": {
+        "confirmPassword": "Confirm Password",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "username": "Username"
+    }
+}
