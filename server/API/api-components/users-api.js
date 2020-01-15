@@ -17,28 +17,20 @@ const createUser = (req, res) => {
     const fname = xss(req.body.fname);
     const lname = xss(req.body.lname);
     const password = xss(req.body.password);
-    const unit = xss(req.body.unit);
     const username = xss(req.body.username);
-    const weight = req.body.weight;
-
-    const measuringUnits = Object.values(common.measuringUnits);
 
     if (typeof(email) !== common.variableTypes.STRING ||
         typeof(fname) !== common.variableTypes.STRING ||
         typeof(lname) !== common.variableTypes.STRING ||
         typeof(password) !== common.variableTypes.STRING ||
-        typeof(unit) !== common.variableTypes.STRING ||
         typeof(username) !== common.variableTypes.STRING ||
-        typeof(weight) !== common.variableTypes.NUMBER ||
         common.isEmptyString(email) ||
         common.isEmptyString(fname) ||
         common.isEmptyString(lname) ||
         common.isEmptyString(password) ||
-        common.isEmptyString(unit) ||
         common.isEmptyString(username) ||
         !common.isValidEmail(email) ||
-        password !== confirmedPassword ||
-        !measuringUnits.includes(unit)) {
+        password !== confirmedPassword) {
             return res.status(common.getStatus(2002)).send(common.getError(2002));
     }
 
@@ -47,9 +39,7 @@ const createUser = (req, res) => {
         fname,
         lname,
         password,
-        unit,
-        username,
-        weight
+        username
     };
 
     users.createUser(newUser, (err, userObject) => {

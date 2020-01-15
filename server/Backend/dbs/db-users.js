@@ -18,9 +18,7 @@ const createUser = function(userObject, callback) {
     newUser.lname = userObject.lname;
     newUser.mtime = userObject.mtime;
     newUser.password = userObject.password;
-    newUser.unit = userObject.unit;
     newUser.username = userObject.username;
-    newUser.weight = userObject.weight;
 
     newUser.save(function(err) {
         if (err) {

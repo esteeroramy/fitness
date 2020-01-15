@@ -16,7 +16,7 @@ const errors = Object.freeze({
     1001: 'failed to connect to the database',
     1002: 'failed to hash password',
 
-    //users
+    // users
     2000: 'failed to save user, database issue',
     2001: 'failed to find user, database issue',
     2002: 'invalid user parameters',
@@ -138,7 +138,7 @@ exports.getUUID = getUUID;
  * Checks if a string is empty
  *
  * @param {String} text string to check if its empty
- * @return {Boolean}
+ * @returns {Boolean}
  */
 const isEmptyString = function(text) {
     return text.trim().length === 0;
@@ -149,7 +149,7 @@ exports.isEmptyString = isEmptyString;
  * Checks if an email is valid
  *
  * @param {String} text email to check
- * @return {Boolean}
+ * @returns {Boolean}
  */
 const isValidEmail = function(email) {
     return /\S+@\S+\.\S+/.test(email);
@@ -186,10 +186,12 @@ exports.setVerificationToken = setVerificationToken;
  * @param {Function} callback 
  */
 const verifyToken = function(req, res, callback) {
-    jwt.verify(req.token, config.secret, (err, _) => {
+    jwt.verify(req.token, config.secret, (err, authData) => {
         if (err) {
             res.sendStatus(403);
         }
+
+        req.authData = authData;
 
         callback(req, res);
     })
