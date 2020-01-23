@@ -24,5 +24,7 @@ exports.initialize = initialize;
 
 // <Users Collection> -------------------------------------------------
 exports.createUser = db_users.createUser;
+exports.getUserById = db_users.getUserById;
 exports.getUserByUsername = db_users.getUserByUsername;
+exports.updateById = db_users.updateById;
 // </Users Collection> -------------------------------------------------

@@ -17,7 +17,7 @@ class _$SignUpRepository extends SignUpRepository {
   Future<Response> signUp(Map<String, String> data) {
     final $url = '/users/create';
     final $body = data;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
 }

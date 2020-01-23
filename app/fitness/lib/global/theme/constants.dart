@@ -8,7 +8,7 @@ dynamic constantFor(BuildContext context, String constant) {
           borderRadius: BorderRadius.circular(25.0),
           borderSide: BorderSide(
             width: 2.0,
-            color: Theme.of(context).primaryColorLight,
+            color: Colors.white60,
           ),
         );
       }
@@ -18,7 +18,7 @@ dynamic constantFor(BuildContext context, String constant) {
           borderRadius: BorderRadius.circular(25.0),
           borderSide: BorderSide(
             width: 2.0,
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
           ),
         );
       }
@@ -28,7 +28,7 @@ dynamic constantFor(BuildContext context, String constant) {
           borderRadius: BorderRadius.circular(25.0),
           borderSide: BorderSide(
             width: 2.0,
-            color: Theme.of(context).errorColor,
+            color: Colors.red[700],
           ),
         );
       }
@@ -38,13 +38,13 @@ dynamic constantFor(BuildContext context, String constant) {
           borderRadius: BorderRadius.circular(25.0),
           borderSide: BorderSide(
             width: 2.0,
-            color: Theme.of(context).errorColor,
+            color: Colors.red[700],
           ),
         );
       }
     case 'loginFieldHintTextStyle':
       {
-        return TextStyle(color: Theme.of(context).primaryColorLight);
+        return TextStyle(color: Colors.white60);
       }
   }
 }
