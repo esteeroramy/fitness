@@ -166,8 +166,8 @@ exports.isValidEmail = isValidEmail;
 const setVerificationToken = function(req, res, next) {
     const bearerHeader = req.headers.authorization;
 
-    if (bearerHeader === variableTypes.UNDEFINED) {
-        res.sendStatus(403);
+    if (bearerHeader === undefined) {
+        return res.sendStatus(403);
     }
 
     const bearer = bearerHeader.split(' ');
@@ -188,7 +188,7 @@ exports.setVerificationToken = setVerificationToken;
 const verifyToken = function(req, res, callback) {
     jwt.verify(req.token, config.secret, (err, authData) => {
         if (err) {
-            res.sendStatus(403);
+            return res.sendStatus(403);
         }
 
         req.authData = authData;

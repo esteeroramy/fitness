@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 
 const api = require('./API/api-handler.js');
+const common = require('./common.js');
 const config = require('./config.js')
 const db = require('./Backend/db.js');
 
@@ -31,14 +32,17 @@ app.listen(config.port, () => {
 });
 
 // <Get Requests> -----------------------------------------------
+app.get('/me', common.setVerificationToken, api.handleGetMePath);
+app.get('/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
 // </Get Requests> -----------------------------------------------
 
 // <Post Requests> -----------------------------------------------
 app.post('/login', api.handleLoginPath);
-app.post('/users/create', api.handleUsersCreatePath);
+app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpdateProfile);
 // </Post Requests> -----------------------------------------------
 
 // <Put Requests> -----------------------------------------------
+app.put('/users/create', api.handleUsersCreatePath);
 // </Put Requests> -----------------------------------------------
 
 // <Delete Requests> -----------------------------------------------

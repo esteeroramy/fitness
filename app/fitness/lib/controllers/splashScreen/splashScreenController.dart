@@ -1,7 +1,9 @@
 import 'package:sailor/sailor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:fitness/models/me.dart';
 import 'package:fitness/routes.dart';
+import 'package:fitness/services/meRepository.dart';
 
 class SplashScreenController {
   void backgroundWork() async {
@@ -16,12 +18,24 @@ class SplashScreenController {
         navigationType: NavigationType.pushReplace,
       );
     } else {
-      preferences.setString('access_token', accessToken);
+      try {
+        final String token = 'Bearer $accessToken';
+        final response = await MeRepository.create().me(token);
+        final Me meObject = Me.fromMap(response.body);
 
-      Routes.sailor.navigate(
-        '/home',
-        navigationType: NavigationType.pushReplace,
-      );
+        MeRepository.setMeData(meObject);
+        MeRepository.setAccessToken(token);
+
+        Routes.sailor.navigate(
+          '/home',
+          navigationType: NavigationType.pushReplace,
+        );
+      } catch (exception) {
+        Routes.sailor.navigate(
+          '/login',
+          navigationType: NavigationType.pushReplace,
+        );
+      }
     }
   }
 }

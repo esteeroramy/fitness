@@ -51,7 +51,7 @@ class SignUp extends StatelessWidget {
                                   AppLocalizations.of(context)
                                       .translate('signUpPage.createAccount'),
                                   style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Colors.white,
                                       fontSize: 27.0),
                                 ),
                               ),
@@ -77,20 +77,20 @@ class SignUp extends StatelessWidget {
                                 AppLocalizations.of(context)
                                     .translate('signUpPage.haveAccount'),
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColor),
+                                    color: Colors.white),
                               ),
                               FlatButton(
                                 child: Text(
                                   AppLocalizations.of(context)
                                       .translate('signUpPage.login'),
                                   style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(25.0),
                                   side: BorderSide(
-                                    color: Theme.of(context).primaryColor,
+                                    color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
@@ -116,7 +116,7 @@ class SignUp extends StatelessWidget {
   _buildUsernameField(context, data) {
     return TextFormField(
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText: AppLocalizations.of(context).translate('userFields.username'),
@@ -149,7 +149,7 @@ class SignUp extends StatelessWidget {
       obscureText: true,
       controller: passwordController,
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText: AppLocalizations.of(context).translate('userFields.password'),
@@ -181,7 +181,7 @@ class SignUp extends StatelessWidget {
     return TextFormField(
       obscureText: true,
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText: AppLocalizations.of(context)
@@ -217,7 +217,7 @@ class SignUp extends StatelessWidget {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText: AppLocalizations.of(context).translate('userFields.email'),
@@ -249,7 +249,7 @@ class SignUp extends StatelessWidget {
   _buildFirstNameField(context, data) {
     return TextFormField(
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText:
@@ -281,7 +281,7 @@ class SignUp extends StatelessWidget {
   _buildLastNameField(context, data) {
     return TextFormField(
       textAlign: TextAlign.start,
-      style: TextStyle(color: Theme.of(context).primaryColor),
+      style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         filled: true,
         hintText: AppLocalizations.of(context).translate('userFields.lastName'),
@@ -313,14 +313,14 @@ class SignUp extends StatelessWidget {
       GlobalKey<FormState> key, ReactiveModel reactiveModel) {
     if (reactiveModel.state.isLoading) {
       return Container(
-          padding: EdgeInsets.only(bottom: 18.0), child: Loading());
+          padding: EdgeInsets.only(bottom: 18.0), child: Loading(color: Colors.white));
     } else {
       return RaisedButton(
         child:
             Text(AppLocalizations.of(context).translate('signUpPage.signUp')),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
-        color: Theme.of(context).buttonColor,
+        color: Colors.cyan,
         onPressed: () => _signUpPressed(context, data, key, reactiveModel),
       );
     }
@@ -330,7 +330,7 @@ class SignUp extends StatelessWidget {
     if (!reactiveModel.state.isLoading && reactiveModel.state.hasError) {
       return Text(
         reactiveModel.state.errorMessage,
-        style: TextStyle(color: Theme.of(context).errorColor),
+        style: TextStyle(color: Colors.red[700]),
       );
     } else {
       return Container();

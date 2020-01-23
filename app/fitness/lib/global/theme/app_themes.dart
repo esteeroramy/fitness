@@ -7,8 +7,12 @@ const Map<String, String> AppThemes = {
 final appThemeData = {
   AppThemes['default']: ThemeData(
     brightness: Brightness.light,
-    primaryColor: Colors.white,
-    primaryColorLight: Colors.white60,
-    buttonColor: Colors.cyan
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      color: Colors.white,
+      textTheme: TextTheme(
+        title: TextStyle(color: Colors.black),
+      ),
+    ),
   ),
 };

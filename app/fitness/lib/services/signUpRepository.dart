@@ -6,7 +6,7 @@ part 'signUpRepository.chopper.dart';
 
 @ChopperApi(baseUrl: '/users')
 abstract class SignUpRepository extends ChopperService {
-  @Post(path: '/create')
+  @Put(path: '/create')
   Future<Response> signUp(@Body() Map<String, String> data);
 
   static SignUpRepository create() {

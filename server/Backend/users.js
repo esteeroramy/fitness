@@ -8,7 +8,7 @@ const db = require('./db.js');
  * 
  * @param {Object} userObject 
  * @param {Function} callback 
- * @returns {Function} callback
+ * @returns {Function}
  */
 const createUser = function(userObject, callback) {
     const { 
@@ -55,7 +55,7 @@ const createUser = function(userObject, callback) {
  * @param {String} username 
  * @param {String} password 
  * @param {Function} callback 
- * @returns {Function} callback
+ * @returns {Function}
  */
 const login = function(username, password, callback) {
     db.getUserByUsername({ username }, (err, userObject) => {
@@ -81,7 +81,87 @@ const login = function(username, password, callback) {
     });
 };
 
+/**
+ * Gets the user profile
+ * 
+ * @param {String} userId
+ * @param {Function} callback
+ * @returns {Function}
+ */
+const getProfile = function(userId, callback) {
+    db.getUserById({ userId }, (err, userObject) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        if (userObject) {
+            const userProfile = {
+                email: userObject.email,
+                fname: userObject.fname,
+                lname: userObject.lname,
+                username: userObject.username
+            };
+
+            return callback(null, userProfile);
+        } else {
+            return callback(common.getError(2001), null);
+        }
+    });
+}
+
+/**
+ * Gets the me object for a user
+ * 
+ * @param {String} userId
+ * @param {Function} callback
+ * @returns {Function}
+ */
+const getMe = function(userId, callback) {
+    db.getUserById({ userId }, (err, meObject) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        if (meObject) {
+            const userMeObject = {
+                email: meObject.email,
+                fname: meObject.fname,
+                lname: meObject.lname,
+                username: meObject.username
+            };
+
+            return callback(null, userMeObject);
+        } else {
+            return callback(common.getError(2001), null);
+        }
+    });
+}
+
+/**
+ * Updates the user profile
+ * 
+ * @param {String} userId 
+ * @param {Object} userProfile 
+ * @param {Function} callback 
+ */
+const  updateUserProfile = function(userId, userProfile, callback) {
+    db.updateById({ userId, userProfile }, (err, userObject) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        if (userObject) {
+            return callback(null, userObject);
+        } else {
+            return callback(common.getError(2001), null);
+        }
+    });
+}
+
 // <exports> -----------------------------------
 exports.createUser = createUser;
+exports.getProfile = getProfile;
 exports.login = login;
+exports.getMe = getMe;
+exports.updateUserProfile = updateUserProfile;
 // </exports> -----------------------------------

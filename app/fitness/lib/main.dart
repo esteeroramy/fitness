@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
+import 'package:fitness/controllers/bottomNavigation/bottomNavigationController.dart';
 import 'package:fitness/controllers/theme/theme_controller.dart';
 import 'package:fitness/global/localizations/app_localizations.dart';
 import 'package:fitness/routes.dart';
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Injector(
-      inject: [Inject<ThemeController>(() => ThemeController())],
+      inject: [
+        Inject<ThemeController>(() => ThemeController()),
+        Inject<BottomNavigationController>(() => BottomNavigationController())
+      ],
       builder: (_) => StateBuilder<ThemeController>(
         models: [Injector.getAsReactive<ThemeController>()],
         builder: (context, reactiveModel) {

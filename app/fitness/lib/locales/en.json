@@ -30,6 +30,22 @@
         "noAccount": "Don't have an account?",
         "login": "Login"
     },
+    "editProfilePage": {
+        "title": "Edit Profile"
+    },
+    "screens": {
+        "home": "Home",
+        "nutrition": "Nutrition",
+        "progress": "Progress",
+        "settings": "Settings",
+        "workouts": "Workouts"
+    },
+    "settingsPage": {
+        "changePassword": "Change Password",
+        "logout": "Logout",
+        "preferences": "Preferences",
+        "title": "Settings"
+    },
     "signUpPage": {
         "createAccount": "Create Account",
         "haveAccount": "Already have an account?",

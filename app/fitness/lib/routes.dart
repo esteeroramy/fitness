@@ -35,6 +35,36 @@ class Routes {
           return Home();
         },
       ),
+      SailorRoute(
+        name: '/workouthome',
+        builder: (context, args, params) {
+          return WorkoutHome();
+        },
+      ),
+      SailorRoute(
+        name: '/nutritionhome',
+        builder: (context, args, params) {
+          return NutritionHome();
+        },
+      ),
+      SailorRoute(
+        name: '/progresshome',
+        builder: (context, args, params) {
+          return ProgressHome();
+        },
+      ),
+      SailorRoute(
+        name: '/settingshome',
+        builder: (context, args, params) {
+          return SettingsHome();
+        },
+      ),
+      SailorRoute(
+        name: '/editprofile',
+        builder: (context, args, params) {
+          return EditProfile();
+        },
+      ),
     ]);
   }
 }
