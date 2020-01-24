@@ -107,7 +107,7 @@ const getProfile = function(userId, callback) {
             return callback(common.getError(2001), null);
         }
     });
-}
+};
 
 /**
  * Gets the me object for a user
@@ -135,7 +135,7 @@ const getMe = function(userId, callback) {
             return callback(common.getError(2001), null);
         }
     });
-}
+};
 
 /**
  * Updates the user profile
@@ -144,7 +144,7 @@ const getMe = function(userId, callback) {
  * @param {Object} userProfile 
  * @param {Function} callback 
  */
-const  updateUserProfile = function(userId, userProfile, callback) {
+const updateUserProfile = function(userId, userProfile, callback) {
     db.updateById({ userId, userProfile }, (err, userObject) => {
         if (err) {
             return callback(err, null);
@@ -156,12 +156,55 @@ const  updateUserProfile = function(userId, userProfile, callback) {
             return callback(common.getError(2001), null);
         }
     });
-}
+};
+
+const updatePassword = function(userId, passwordObject, callback) {
+    db.getUserById({ userId }, (err, userObject) => {
+        if (err) {
+            return callback(err);
+        }
+
+        if (userObject) {
+            bcrypt.compare(passwordObject.oldPassword, userObject.password, function(err, valid) {
+                if (err) {
+                    return callback(common.getError(1002));
+                }
+
+                if (!valid) {
+                    return callback(common.getError(2008));
+                }
+
+                bcrypt.hash(passwordObject.newPassword, 11, function(err, hash) {
+                    if (err) {
+                        return callback(common.getError(1002));
+                    }
+                    
+                    userProfile = { password: hash};
+
+                    db.updateById({ userId, userProfile }, (err, userObject) => {
+                        if (err) {
+                            return callback(err);
+                        }
+
+                        if (userObject) {
+                            return callback(null);
+                        } else {
+                            return callback(common.getError(2001));
+                        }
+                    });
+                });
+            });
+        } else {
+            return callback(common.getError(2001));
+        }
+    });
+};
 
 // <exports> -----------------------------------
 exports.createUser = createUser;
 exports.getProfile = getProfile;
 exports.login = login;
 exports.getMe = getMe;
+exports.updatePassword = updatePassword;
 exports.updateUserProfile = updateUserProfile;
 // </exports> -----------------------------------

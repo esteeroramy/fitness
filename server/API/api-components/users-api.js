@@ -174,10 +174,50 @@ const updateProfile = (req, res) => {
     });
 };
 
+/**
+ * Updates the user password
+ * 
+ * @param {Object} req 
+ * @param {Object} res 
+ */
+const updatePassword = (req, res) => {
+    common.verifyToken (req, res, (req, res) => {
+        const userId = req.authData.signObject._id;
+        const oldPassword = xss(req.body.oldPassword);
+        const newPassword = xss(req.body.newPassword);
+        const confirmedPassword = xss(req.body.confirmedPassword);
+
+        if (typeof(oldPassword) !== common.variableTypes.STRING ||
+            typeof(newPassword) !== common.variableTypes.STRING ||
+            typeof(confirmedPassword) !== common.variableTypes.STRING ||
+            common.isEmptyString(oldPassword) ||
+            common.isEmptyString(newPassword) ||
+            common.isEmptyString(confirmedPassword) ||
+            newPassword !== confirmedPassword) {
+                return res.status(common.getStatus(2007)).send(common.getError(2007));
+        }
+
+        const passwordObject = {
+            oldPassword,
+            newPassword,
+            confirmedPassword
+        };
+
+        users.updatePassword(userId, passwordObject, (err) => {
+            if (err) {
+                return res.status(common.getStatus(err)).send(err);
+            }
+
+            return res.status(200).send('ok');
+        });
+    });
+};
+
 // <exports> ------------------------------------------------
 exports.createUser = createUser;
 exports.login = login;
 exports.getProfile = getProfile;
 exports.me = me;
+exports.updatePassword = updatePassword;
 exports.updateProfile = updateProfile;
 // </exports> ------------------------------------------------

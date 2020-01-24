@@ -65,6 +65,12 @@ class Routes {
           return EditProfile();
         },
       ),
+      SailorRoute(
+        name: '/changepassword',
+        builder: (context, args, params) {
+          return ChangePassword();
+        },
+      ),
     ]);
   }
 }

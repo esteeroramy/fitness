@@ -2,6 +2,9 @@
     "application": {
         "name": "Fitness"
     },
+    "changePasswordPage": {
+        "title": "Change Password"
+    },
     "errorCodes": {
         "1000": "Invalid request",
         "1001": "Server error, please try again later",
@@ -13,6 +16,8 @@
         "2004": "Incorrect username or password",
         "2005": "Failed to start session, please try again later",
         "2006": "Invalid username or password",
+        "2007": "Invalid parameters",
+        "2008": "Old password is incorrect",
         "unknown": "Unknown Error"
     },
     "errors": {
@@ -21,6 +26,8 @@
         "firstNameRequired": "First name is required",
         "invalidEmail": "Email is not valid",
         "lastNameRequired": "Last name is required",
+        "newPasswordRequired": "New password required",
+        "oldPasswordRequired": "Old password is required",
         "passwordRequired": "Password is required",
         "passwordsDoNotMatch": "Passwords don't match",
         "usernameRequired": "Username is required"
@@ -57,6 +64,8 @@
         "email": "Email",
         "firstName": "First Name",
         "lastName": "Last Name",
+        "newPassword": "New Password",
+        "oldPassword": "Old Password",
         "password": "Password",
         "username": "Username"
     }

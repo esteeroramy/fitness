@@ -23,7 +23,9 @@ const errors = Object.freeze({
     2003: 'user already exists in the database',
     2004: 'incorrect username or password',
     2005: 'failed to start session',
-    2006: 'invalid login parameters'
+    2006: 'invalid login parameters',
+    2007: 'invalid password parameter',
+    2008: 'old password is incorrect'
 });
 exports.errors = errors;
 
@@ -41,7 +43,9 @@ const errorStatusCodes = Object.freeze({
     2003: 409,
     2004: 404,
     2005: 500,
-    2006: 422
+    2006: 422,
+    2007: 422,
+    2008: 422
 })
 exports.errorStatusCodes = errorStatusCodes;
 
