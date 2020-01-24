@@ -167,7 +167,7 @@ class SettingsHome extends StatelessWidget {
           ),
           Divider(thickness: 1.0),
           InkWell(
-            onTap: () => _onPreferencesClicked(),
+            onTap: () => _onChangePasswordClicked(),
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
@@ -216,6 +216,12 @@ class SettingsHome extends StatelessWidget {
   void _onProfileClicked() {
     Routes.sailor.navigate(
       '/editprofile',
+    );
+  }
+
+  void _onChangePasswordClicked() {
+    Routes.sailor.navigate(
+      '/changepassword',
     );
   }
 

@@ -7,7 +7,10 @@ part 'userRepository.chopper.dart';
 @ChopperApi(baseUrl: '/users')
 abstract class UserRepository extends ChopperService {
   @Post(path: '/updateProfile')
-  Future<Response> update(@Header('Authorization') String token, @Body() Map<String, String> data);
+  Future<Response> updateProfile(@Header('Authorization') String token, @Body() Map<String, String> data);
+
+  @Post(path: '/updatePassword')
+  Future<Response> updatePassword(@Header('Authorization') String token, @Body() Map<String, String> data);
 
   static UserRepository create() {
     final client = ChopperClient(

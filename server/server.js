@@ -38,6 +38,7 @@ app.get('/users/profile', common.setVerificationToken, api.handleUsersGetProfile
 
 // <Post Requests> -----------------------------------------------
 app.post('/login', api.handleLoginPath);
+app.post('/users/updatePassword', common.setVerificationToken, api.handleUsersUpdatePassword);
 app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpdateProfile);
 // </Post Requests> -----------------------------------------------
 

@@ -1,21 +1,18 @@
+import 'package:fitness/components/loading.dart';
+import 'package:fitness/controllers/changePassword/changePasswordController.dart';
+import 'package:fitness/global/localizations/app_localizations.dart';
+import 'package:fitness/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-import 'package:fitness/components/loading.dart';
-import 'package:fitness/controllers/editProfile/editProfileController.dart';
-import 'package:fitness/global/common/common.dart';
-import 'package:fitness/global/localizations/app_localizations.dart';
-import 'package:fitness/routes.dart';
-import 'package:fitness/services/meRepository.dart';
-
-class EditProfile extends StatelessWidget {
-  final TextEditingController fnameController =
-      new TextEditingController(text: MeRepository.meData.fname);
-  final TextEditingController lnameController =
-      new TextEditingController(text: MeRepository.meData.lname);
-  final TextEditingController emailController =
-      new TextEditingController(text: MeRepository.meData.email);
+class ChangePassword extends StatelessWidget {
+  final TextEditingController oldPasswordController =
+      new TextEditingController();
+  final TextEditingController newPasswordController =
+      new TextEditingController();
+  final TextEditingController confirmPasswordController =
+      new TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -24,9 +21,11 @@ class EditProfile extends StatelessWidget {
     Map<String, String> data = {};
 
     return Injector(
-      inject: [Inject<EditProfileController>(() => EditProfileController())],
-      builder: (_) => StateBuilder<EditProfileController>(
-        models: [Injector.getAsReactive<EditProfileController>()],
+      inject: [
+        Inject<ChangePasswordController>(() => ChangePasswordController())
+      ],
+      builder: (_) => StateBuilder<ChangePasswordController>(
+        models: [Injector.getAsReactive<ChangePasswordController>()],
         builder: (context, reactiveModel) {
           return Scaffold(
             appBar: _appBar(context, reactiveModel, data),
@@ -37,7 +36,6 @@ class EditProfile extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       SizedBox(height: 10.0),
-                      _userPicture(context),
                       Form(
                         key: _formKey,
                         child: Container(
@@ -47,16 +45,16 @@ class EditProfile extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(AppLocalizations.of(context)
-                                  .translate('userFields.firstName')),
-                              _buildFirstNameField(context, data),
+                                  .translate('userFields.oldPassword')),
+                              _buildOldPasswordField(context, data),
                               SizedBox(height: 15.0),
                               Text(AppLocalizations.of(context)
-                                  .translate('userFields.lastName')),
-                              _buildLastNameField(context, data),
+                                  .translate('userFields.newPassword')),
+                              _buildNewPasswordField(context, data),
                               SizedBox(height: 15.0),
                               Text(AppLocalizations.of(context)
-                                  .translate('userFields.email')),
-                              _buildEmailField(context, data),
+                                  .translate('userFields.confirmPassword')),
+                              _buildConfirmPasswordField(context, data),
                               SizedBox(height: 15.0),
                               _buildLoadingSection(context, reactiveModel)
                             ],
@@ -101,7 +99,7 @@ class EditProfile extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10.0),
                     child: Text(
                       AppLocalizations.of(context)
-                          .translate('editProfilePage.title'),
+                          .translate('changePasswordPage.title'),
                       style: TextStyle(
                         fontSize: 33.0,
                         fontWeight: FontWeight.w600,
@@ -134,97 +132,68 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  Widget _userPicture(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: 190.0,
-            height: 190.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                    "https://lh3.googleusercontent.com/ztb5lNvRZrwDzdUfplSvLs9JthoPUpeCLPgmtzGkklYlAfiGXB0-YOhWu9cMswolPGsn"),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 120.0,
-            left: 130.0,
-            child: GestureDetector(
-              child: Container(
-                height: 55.0,
-                width: 55.0,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor),
-                child: Icon(MdiIcons.cameraPlusOutline,
-                    size: 24.0, color: Theme.of(context).primaryColorLight),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFirstNameField(BuildContext context, Map<String, String> data) {
+  Widget _buildOldPasswordField(
+      BuildContext context, Map<String, String> data) {
     return TextFormField(
-      controller: fnameController,
+      obscureText: true,
+      controller: oldPasswordController,
       validator: (value) {
         final newValue = value.trim();
 
         if (newValue.isEmpty) {
           return AppLocalizations.of(context)
-              .translate('errors.firstNameRequired');
+              .translate('errors.oldPasswordRequired');
         }
 
         return null;
       },
       onSaved: (value) {
-        data['fname'] = value.trim();
+        data['oldPassword'] = value.trim();
       },
     );
   }
 
-  Widget _buildLastNameField(BuildContext context, Map<String, String> data) {
+  Widget _buildNewPasswordField(
+      BuildContext context, Map<String, String> data) {
     return TextFormField(
-      controller: lnameController,
+      obscureText: true,
+      controller: newPasswordController,
       validator: (value) {
         final newValue = value.trim();
 
         if (newValue.isEmpty) {
           return AppLocalizations.of(context)
-              .translate('errors.lastNameRequired');
+              .translate('errors.newPasswordRequired');
         }
 
         return null;
       },
       onSaved: (value) {
-        data['lname'] = value.trim();
+        data['newPassword'] = value.trim();
       },
     );
   }
 
-  Widget _buildEmailField(BuildContext context, Map<String, String> data) {
+  Widget _buildConfirmPasswordField(
+      BuildContext context, Map<String, String> data) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      controller: emailController,
+      obscureText: true,
+      controller: confirmPasswordController,
       validator: (value) {
         final newValue = value.trim();
 
         if (newValue.isEmpty) {
-          return AppLocalizations.of(context).translate('errors.emailRequired');
-        } else if (!isValidEmail(newValue)) {
-          return AppLocalizations.of(context).translate('errors.invalidEmail');
+          return AppLocalizations.of(context)
+              .translate('errors.confirmPasswordRequired');
+        } else if (newValue != newPasswordController.text) {
+          return AppLocalizations.of(context)
+              .translate('errors.passwordsDoNotMatch');
         }
 
         return null;
       },
       onSaved: (value) {
-        data['email'] = value.trim();
+        data['confirmedPassword'] = value.trim();
       },
     );
   }
@@ -240,8 +209,8 @@ class EditProfile extends StatelessWidget {
     if (form.validate()) {
       form.save();
 
-      reactiveModel
-          .setState((controller) => controller.saveProfile(context, data));
+      reactiveModel.setState(
+          (controller) => controller.savePasswordChange(context, data));
     }
   }
 
@@ -250,9 +219,11 @@ class EditProfile extends StatelessWidget {
     if (reactiveModel.state.isLoading) {
       return Loading();
     } else if (reactiveModel.state.hasError) {
-      return Text(
-        reactiveModel.state.errorMessage,
-        style: TextStyle(color: Theme.of(context).errorColor),
+      return Center(
+        child: Text(
+          reactiveModel.state.errorMessage,
+          style: TextStyle(color: Theme.of(context).errorColor),
+        ),
       );
     }
 
