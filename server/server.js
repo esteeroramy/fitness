@@ -32,6 +32,8 @@ app.listen(config.port, () => {
 });
 
 // <Get Requests> -----------------------------------------------
+app.get('/exercises/custom/_query', common.setVerificationToken, api.handleExercisesCustomQueryPath);
+app.get('/exercises/predefined/_query', common.setVerificationToken, api.handleExercisesPredefinedQueryPath);
 app.get('/me', common.setVerificationToken, api.handleGetMePath);
 app.get('/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
 // </Get Requests> -----------------------------------------------
@@ -43,6 +45,7 @@ app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpd
 // </Post Requests> -----------------------------------------------
 
 // <Put Requests> -----------------------------------------------
+app.put('/exercises/create', common.setVerificationToken, api.handleExercisesCreatePath);
 app.put('/users/create', api.handleUsersCreatePath);
 // </Put Requests> -----------------------------------------------
 

@@ -45,6 +45,7 @@ class SettingsHome extends StatelessWidget {
         elevation: 1.0,
         flexibleSpace: Container(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(height: 70.0),
               Padding(
@@ -66,53 +67,56 @@ class SettingsHome extends StatelessWidget {
   }
 
   Widget _buildUserPicture(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: 190.0,
-            height: 190.0,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: Theme.of(context).primaryColor,
-                width: 3.0,
-              ),
-            ),
-            child: Container(
+    return Padding(
+      padding: EdgeInsets.only(top: 10.0),
+      child: Center(
+        child: Stack(
+          children: <Widget>[
+            Container(
+              width: 190.0,
+              height: 190.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    width: 4.0),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://lh3.googleusercontent.com/ztb5lNvRZrwDzdUfplSvLs9JthoPUpeCLPgmtzGkklYlAfiGXB0-YOhWu9cMswolPGsn"),
+                  color: Theme.of(context).primaryColor,
+                  width: 3.0,
                 ),
               ),
-            ),
-          ),
-          Positioned(
-            top: 140.0,
-            left: 50.0,
-            child: GestureDetector(
-              onTap: () => _onProfileClicked(),
               child: Container(
-                height: 100.0,
-                width: 100.0,
-                padding: EdgeInsets.only(bottom: 35.0),
                 decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).scaffoldBackgroundColor),
-                child: Icon(
-                  MdiIcons.pencilOutline,
-                  size: 26.0,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                      width: 4.0),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        "https://lh3.googleusercontent.com/ztb5lNvRZrwDzdUfplSvLs9JthoPUpeCLPgmtzGkklYlAfiGXB0-YOhWu9cMswolPGsn"),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              top: 140.0,
+              left: 50.0,
+              child: GestureDetector(
+                onTap: () => _onProfileClicked(),
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  padding: EdgeInsets.only(bottom: 35.0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).scaffoldBackgroundColor),
+                  child: Icon(
+                    MdiIcons.pencilOutline,
+                    size: 26.0,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

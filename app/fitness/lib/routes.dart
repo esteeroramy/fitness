@@ -71,6 +71,30 @@ class Routes {
           return ChangePassword();
         },
       ),
+      SailorRoute(
+        name: '/addworkout',
+        builder: (context, args, params) {
+          return AddWorkout();
+        },
+      ),
+      SailorRoute(
+        name: '/createworkout',
+        builder: (context, args, params) {
+          return CreateWorkout();
+        },
+      ),
+      SailorRoute(
+        name: '/addexercise',
+        builder: (context, args, params) {
+          return AddExercise();
+        },
+      ),
+      SailorRoute(
+        name: '/createexercise',
+        builder: (context, args, params) {
+          return CreateExercise();
+        },
+      ),
     ]);
   }
 }

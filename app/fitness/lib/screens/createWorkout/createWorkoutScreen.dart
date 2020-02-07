@@ -2,23 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-import 'package:fitness/components/bottomNavigation.dart';
-import 'package:fitness/controllers/workoutHome/workoutHomeController.dart';
+import 'package:fitness/controllers/createWorkout/createWorkoutController.dart';
 import 'package:fitness/global/localizations/app_localizations.dart';
 import 'package:fitness/routes.dart';
 
-class WorkoutHome extends StatelessWidget {
+class CreateWorkout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Injector(
-      inject: [Inject<WorkoutHomeController>(() => WorkoutHomeController())],
-      builder: (_) => StateBuilder<WorkoutHomeController>(
-        models: [Injector.getAsReactive<WorkoutHomeController>()],
+      inject: [
+        Inject<CreateWorkoutController>(() => CreateWorkoutController())
+      ],
+      builder: (_) => StateBuilder<CreateWorkoutController>(
+        models: [Injector.getAsReactive<CreateWorkoutController>()],
         builder: (context, reactiveModel) {
           return Scaffold(
-            bottomNavigationBar: BottomNavigation(),
             appBar: _appBar(context),
-            body: Text('2', style: TextStyle(fontSize: 30.0)),
+            body: FloatingActionButton(
+              onPressed: () => _onAddExercise(),
+            ),
           );
         },
       ),
@@ -37,10 +39,21 @@ class WorkoutHome extends StatelessWidget {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: IconButton(
+                      icon: Icon(
+                        MdiIcons.arrowLeft,
+                        size: 30.0,
+                        color: Theme.of(context).textTheme.title.color,
+                      ),
+                      onPressed: () => _onBackPressed(),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0),
                     child: Text(
                       AppLocalizations.of(context)
-                          .translate('workoutHomePage.title'),
+                          .translate('createWorkoutPage.title'),
                       style: TextStyle(
                         fontSize: 33.0,
                         fontWeight: FontWeight.w600,
@@ -52,11 +65,10 @@ class WorkoutHome extends StatelessWidget {
                     padding: EdgeInsets.only(right: 10.0),
                     child: IconButton(
                       icon: Icon(
-                        MdiIcons.plus,
+                        MdiIcons.contentSave,
                         size: 30.0,
-                        color: Theme.of(context).textTheme.title.color,
                       ),
-                      onPressed: () => _onAddWorkoutPressed(),
+                      onPressed: null,
                     ),
                   ),
                 ],
@@ -68,9 +80,13 @@ class WorkoutHome extends StatelessWidget {
     );
   }
 
-  _onAddWorkoutPressed() {
+  void _onBackPressed() {
+    Routes.sailor.pop();
+  }
+
+  void _onAddExercise() {
     Routes.sailor.navigate(
-      '/addworkout',
+      '/addexercise',
     );
   }
 }

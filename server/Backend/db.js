@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const common = require('../common.js');
 const config = require('./config.js');
+const db_exercises = require('./dbs/db-exercises.js');
 const db_users = require('./dbs/db-users.js');
 
 /**
@@ -21,6 +22,12 @@ const initialize = function(callback) {
 };
 
 exports.initialize = initialize;
+
+// <Exercises Collection> -------------------------------------------------
+exports.createExercise = db_exercises.createExercise;
+exports.getExercisesByCreatorId = db_exercises.getExercisesByCreatorId;
+exports.getPredefinedExercises = db_exercises.getPredefinedExercises;
+// </Exercises Collection> -------------------------------------------------
 
 // <Users Collection> -------------------------------------------------
 exports.createUser = db_users.createUser;
