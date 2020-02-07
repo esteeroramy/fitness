@@ -25,7 +25,13 @@ const errors = Object.freeze({
     2005: 'failed to start session',
     2006: 'invalid login parameters',
     2007: 'invalid password parameter',
-    2008: 'old password is incorrect'
+    2008: 'old password is incorrect',
+
+    // exercises
+    3000: 'failed to save exercise, database issue',
+    3001: 'failed to find exercise, database issue',
+    3002: 'invalid exercise parameters',
+    3003: 'failed to query exercises, database issue'
 });
 exports.errors = errors;
 
@@ -45,7 +51,13 @@ const errorStatusCodes = Object.freeze({
     2005: 500,
     2006: 422,
     2007: 422,
-    2008: 422
+    2008: 422,
+
+    // exercises
+    3000: 500,
+    3001: 500,
+    3002: 422,
+    3003: 500
 })
 exports.errorStatusCodes = errorStatusCodes;
 
@@ -69,6 +81,20 @@ const variableTypes = Object.freeze({
     UNDEFINED: 'undefined'
 });
 exports.variableTypes = variableTypes;
+
+// Weights options
+const weights = Object.freeze({
+    BARBELL: 'barbell',
+    BODYWEIGHT: 'bodyWeight',
+    CABLE: 'cable',
+    DUMBBELL: 'dumbbell',
+    FREEWEIGHT: 'freeWeight',
+    KETTLEBELL: 'kettlebell',
+    MACHINE: 'machine',
+    MEDICINEBALL: 'medicineBall',
+    RESISTANCEBAND: 'resistanceBand'
+});
+exports.weights = weights;
 
 /**
  * Returns the current date

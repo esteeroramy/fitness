@@ -1,4 +1,11 @@
 const users_api = require('./api-components/users-api.js');
+const exercises_api = require('./api-components/exercises-api.js');
+
+// <Exercises Requests> ------------------------------------------------
+exports.handleExercisesCreatePath = exercises_api.createExercise;
+exports.handleExercisesCustomQueryPath = exercises_api.queryCustomExercises;
+exports.handleExercisesPredefinedQueryPath = exercises_api.queryPredefinedExercises;
+// </Exercises Requests> ------------------------------------------------
 
 // <Users Requests> ------------------------------------------------
 exports.handleLoginPath = users_api.login;

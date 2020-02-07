@@ -1,9 +1,25 @@
 {
+    "addExercisePage": {
+        "createCustom": "Create Custom",
+        "custom": "Custom",
+        "predefined": "Predefined",
+        "title": "Add Exercise"
+    },
+    "addWorkoutPage": {
+        "custom": "Custom",
+        "title": "Add Workout"
+    },
     "application": {
         "name": "Fitness"
     },
     "changePasswordPage": {
         "title": "Change Password"
+    },
+    "createExercisePage": {
+        "title": "Create Exercise"
+    },
+    "createWorkoutPage": {
+        "title": "Create Workout"
     },
     "errorCodes": {
         "1000": "Invalid request",
@@ -18,11 +34,16 @@
         "2006": "Invalid username or password",
         "2007": "Invalid parameters",
         "2008": "Old password is incorrect",
+        "3000": "Failed to create exercise",
+        "3001": "Exercise could not be found",
+        "3002": "Invalid parameters",
+        "3003": "Exercises could not be found",
         "unknown": "Unknown Error"
     },
     "errors": {
         "confirmPasswordRequired": "Confirm password is required",
         "emailRequired": "Email is required",
+        "exerciseNameRequired": "Exercise name is required",
         "firstNameRequired": "First name is required",
         "invalidEmail": "Email is not valid",
         "lastNameRequired": "Last name is required",
@@ -31,6 +52,21 @@
         "passwordRequired": "Password is required",
         "passwordsDoNotMatch": "Passwords don't match",
         "usernameRequired": "Username is required"
+    },
+    "exerciseFields": {
+        "name": "Name",
+        "weight": "Weight"
+    },
+    "exerciseWeights": {
+        "barbell": "Barbell",
+        "bodyWeight": "Body Weight",
+        "cable": "Cable",
+        "dumbbell": "Dumbbell",
+        "freeWeight": "Free Weight",
+        "kettlebell": "Kettlebell",
+        "machine": "Machine",
+        "medicineBall": "Medicine Ball",
+        "resistanceBand": "Resistance Band"
     },
     "loginPage": {
         "createAccount": "Create Account",
@@ -68,5 +104,8 @@
         "oldPassword": "Old Password",
         "password": "Password",
         "username": "Username"
+    },
+    "workoutHomePage": {
+        "title": "Workouts"
     }
 }
