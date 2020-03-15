@@ -16,7 +16,13 @@ const createExercise = function(userId, exerciseObject, callback) {
             return callback(err, null);
         }
 
-        return callback(null, exerciseObject);
+        const exerciseToRerturn = {
+            id: exerciseObject._id,
+            name: exerciseObject.name,
+            weight: exerciseObject.weight,
+        };
+
+        return callback(null, exerciseToRerturn);
     });
 }
 
@@ -35,6 +41,7 @@ const queryCustomExercises = function(userId, callback) {
 
         const exerciseToRerturn = exercises.map(exercise => {
             return {
+                id: exercise._id,
                 name: exercise.name,
                 weight: exercise.weight,
             };
@@ -57,6 +64,7 @@ const queryPredefinedExercises = function(callback) {
 
         const exerciseToRerturn = exercises.map(exercise => {
             return {
+                id: exercise._id,
                 name: exercise.name,
                 weight: exercise.weight,
             };

@@ -18,9 +18,7 @@ class CreateWorkout extends StatelessWidget {
         builder: (context, reactiveModel) {
           return Scaffold(
             appBar: _appBar(context),
-            body: FloatingActionButton(
-              onPressed: () => _onAddExercise(),
-            ),
+            body: _buildBody(context),
           );
         },
       ),
@@ -60,17 +58,6 @@ class CreateWorkout extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10.0),
-                    child: IconButton(
-                      icon: Icon(
-                        MdiIcons.contentSave,
-                        size: 30.0,
-                      ),
-                      onPressed: null,
-                    ),
-                  ),
                 ],
               ),
             ],
@@ -80,13 +67,88 @@ class CreateWorkout extends StatelessWidget {
     );
   }
 
+  Widget _buildBody(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 25.0),
+              child: InkWell(
+                onTap: () => _onSelectCardio(),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(25.0),
+                      child: Image(
+                        image: AssetImage(
+                            'lib/assets/images/workout-types/cardio.jpg'),
+                        color: Colors.grey.withOpacity(0.5),
+                        colorBlendMode: BlendMode.srcOver,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('workoutTypes.cardio'),
+                        style: TextStyle(fontSize: 35.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: 25.0, right: 25.0, top: 25.0, bottom: 25.0),
+              child: InkWell(
+                onTap: () => _onSelectWeights(),
+                child: Stack(
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(25.0),
+                      child: Image(
+                        image: AssetImage(
+                            'lib/assets/images/workout-types/weights.jpg'),
+                        color: Colors.grey.withOpacity(0.5),
+                        colorBlendMode: BlendMode.srcOver,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        AppLocalizations.of(context)
+                            .translate('workoutTypes.weights'),
+                        style: TextStyle(fontSize: 35.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _onBackPressed() {
     Routes.sailor.pop();
   }
 
-  void _onAddExercise() {
+  void _onSelectCardio() {
     Routes.sailor.navigate(
-      '/addexercise',
+      '/createcardioworkout',
+    );
+  }
+
+  void _onSelectWeights() {
+    Routes.sailor.navigate(
+      '/createweightsworkout',
     );
   }
 }

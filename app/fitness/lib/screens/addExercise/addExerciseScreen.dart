@@ -4,6 +4,7 @@ import 'package:states_rebuilder/states_rebuilder.dart';
 
 import 'package:fitness/components/loading.dart';
 import 'package:fitness/controllers/addExercise/addExerciseController.dart';
+import 'package:fitness/controllers/createWeightsWorkout/createWeightsWorkoutController.dart';
 import 'package:fitness/global/localizations/app_localizations.dart';
 import 'package:fitness/models/exercise..dart';
 import 'package:fitness/routes.dart';
@@ -16,9 +17,14 @@ class AddExercise extends StatelessWidget {
       builder: (_) => StateBuilder<AddExerciseController>(
         models: [Injector.getAsReactive<AddExerciseController>()],
         builder: (context, reactiveModel) {
-          return Scaffold(
-            appBar: _appBar(context),
-            body: _buildTabView(context, reactiveModel),
+          return StateBuilder<CreateWeightsWorkoutController>(
+              models: [Injector.getAsReactive<CreateWeightsWorkoutController>()],
+              builder: (context, createWeightsWorkoutReactiveModel) {
+                return Scaffold(
+                  appBar: _appBar(context),
+                  body: _buildTabView(context, reactiveModel, createWeightsWorkoutReactiveModel),
+                );
+              },
           );
         },
       ),
@@ -67,7 +73,7 @@ class AddExercise extends StatelessWidget {
     );
   }
 
-  Widget _buildTabView(BuildContext context, ReactiveModel reactiveModel) {
+  Widget _buildTabView(BuildContext context, ReactiveModel reactiveModel, ReactiveModel createWeightsWorkoutReactiveModel) {
     return DefaultTabController(
       length: 2,
       child: Column(
@@ -95,10 +101,10 @@ class AddExercise extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   Container(
-                    child: _buildPredefinedPage(context, reactiveModel),
+                    child: _buildPredefinedPage(context, reactiveModel, createWeightsWorkoutReactiveModel),
                   ),
                   Container(
-                    child: _buildCustomPage(context, reactiveModel),
+                    child: _buildCustomPage(context, reactiveModel, createWeightsWorkoutReactiveModel),
                   )
                 ],
               ),
@@ -109,7 +115,7 @@ class AddExercise extends StatelessWidget {
     );
   }
 
-  Widget _buildCustomPage(BuildContext context, ReactiveModel reactiveModel) {
+  Widget _buildCustomPage(BuildContext context, ReactiveModel reactiveModel, ReactiveModel createWeightsWorkoutReactiveModel) {
     if (reactiveModel.state.isCustomFirstLoad) {
       WidgetsBinding.instance.addPostFrameCallback((_) => reactiveModel
           .setState((controller) => controller.queryCustomExercises(context)));
@@ -133,9 +139,9 @@ class AddExercise extends StatelessWidget {
               padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
               itemCount: reactiveModel.state.customExerciseList.length,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
+                return GestureDetector(
                   onTap: () => _addExercise(
-                      reactiveModel.state.customExerciseList[index]),
+                      reactiveModel.state.customExerciseList[index], createWeightsWorkoutReactiveModel),
                   child: Card(
                     elevation: 2.0,
                     child: Padding(
@@ -178,7 +184,7 @@ class AddExercise extends StatelessWidget {
   }
 
   Widget _buildPredefinedPage(
-      BuildContext context, ReactiveModel reactiveModel) {
+      BuildContext context, ReactiveModel reactiveModel, ReactiveModel createWeightsWorkoutReactiveModel) {
     if (reactiveModel.state.isPredefinedFirstLoad) {
       WidgetsBinding.instance.addPostFrameCallback((_) =>
           reactiveModel.setState(
@@ -199,9 +205,9 @@ class AddExercise extends StatelessWidget {
         padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
         itemCount: reactiveModel.state.predefinedExerciseList.length,
         itemBuilder: (BuildContext context, int index) {
-          return InkWell(
+          return GestureDetector(
             onTap: () =>
-                _addExercise(reactiveModel.state.predefinedExerciseList[index]),
+                _addExercise(reactiveModel.state.predefinedExerciseList[index], createWeightsWorkoutReactiveModel),
             child: Card(
               child: Padding(
                 padding: EdgeInsets.all(12.0),
@@ -226,7 +232,8 @@ class AddExercise extends StatelessWidget {
     );
   }
 
-  void _addExercise(Exercise exercise) {
+  void _addExercise(Exercise exercise, ReactiveModel createWeightsWorkoutReactiveModel) {
+    createWeightsWorkoutReactiveModel.setState((controller) => controller.addExercise(exercise));
     Routes.sailor.pop();
   }
 }

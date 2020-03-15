@@ -3,6 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import 'package:fitness/components/loading.dart';
+import 'package:fitness/controllers/createWeightsWorkout/createWeightsWorkoutController.dart';
 import 'package:fitness/controllers/createExercise/createExerciseController.dart';
 import 'package:fitness/global/localizations/app_localizations.dart';
 import 'package:fitness/routes.dart';
@@ -21,19 +22,24 @@ class CreateExercise extends StatelessWidget {
       builder: (_) => StateBuilder<CreateExerciseController>(
         models: [Injector.getAsReactive<CreateExerciseController>()],
         builder: (context, reactiveModel) {
-          return Scaffold(
-            appBar: _appBar(context, data, reactiveModel),
-            body: Container(
-              height: double.infinity,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    _buildForm(context, data, reactiveModel),
-                  ],
+          return StateBuilder<CreateWeightsWorkoutController>(
+            models: [Injector.getAsReactive<CreateWeightsWorkoutController>()],
+            builder: (context, createWeightsWorkoutReactiveModel) {
+              return Scaffold(
+                appBar: _appBar(context, data, reactiveModel, createWeightsWorkoutReactiveModel),
+                body: Container(
+                  height: double.infinity,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        _buildForm(context, data, reactiveModel),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           );
         },
       ),
@@ -41,7 +47,7 @@ class CreateExercise extends StatelessWidget {
   }
 
   Widget _appBar(BuildContext context, Map<String, String> data,
-      ReactiveModel reactiveModel) {
+      ReactiveModel reactiveModel, ReactiveModel createWeightsWorkoutReactiveModel) {
     return PreferredSize(
       preferredSize: Size.fromHeight(101.0),
       child: AppBar(
@@ -83,7 +89,7 @@ class CreateExercise extends StatelessWidget {
                         size: 30.0,
                       ),
                       onPressed: () => _onSavePressed(
-                          context, data, _formKey, reactiveModel),
+                          context, data, _formKey, reactiveModel, createWeightsWorkoutReactiveModel),
                     ),
                   ),
                 ],
@@ -142,8 +148,8 @@ class CreateExercise extends StatelessWidget {
       items: CreateExerciseController.exerciseWeights.map((item) {
         return new DropdownMenuItem<String>(
           value: item,
-          child: new Text(
-              AppLocalizations.of(context).translate('exerciseWeights.' + item)),
+          child: new Text(AppLocalizations.of(context)
+              .translate('exerciseWeights.' + item)),
         );
       }).toList(),
       value: reactiveModel.state.selectedExerciseType,
@@ -175,14 +181,14 @@ class CreateExercise extends StatelessWidget {
   }
 
   void _onSavePressed(BuildContext context, Map<String, String> data,
-      GlobalKey<FormState> key, ReactiveModel reactiveModel) {
+      GlobalKey<FormState> key, ReactiveModel reactiveModel, ReactiveModel createWeightsWorkoutReactiveModel) {
     final form = key.currentState;
 
     if (form.validate()) {
       form.save();
 
       reactiveModel
-          .setState((controller) => controller.createExercise(context, data));
+          .setState((controller) => controller.createExercise(context, createWeightsWorkoutReactiveModel, data));
     }
   }
 }

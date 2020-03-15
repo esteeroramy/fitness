@@ -6,7 +6,12 @@ import 'package:fitness/routes.dart';
 import 'package:fitness/services/meRepository.dart';
 
 class SplashScreenController {
+  bool _isFirstLoad = true;
+  bool get isFirstLoad => _isFirstLoad;
+
   void backgroundWork() async {
+    _isFirstLoad = false;
+
     // Chech if there is a token already saved on the device, if there is
     // log in the user automatically, otherwise go to login.
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -16,6 +21,7 @@ class SplashScreenController {
       Routes.sailor.navigate(
         '/login',
         navigationType: NavigationType.pushReplace,
+        transitionDuration: Duration(milliseconds: 0),
       );
     } else {
       try {
@@ -29,11 +35,13 @@ class SplashScreenController {
         Routes.sailor.navigate(
           '/home',
           navigationType: NavigationType.pushReplace,
+          transitionDuration: Duration(milliseconds: 0),
         );
       } catch (exception) {
         Routes.sailor.navigate(
           '/login',
           navigationType: NavigationType.pushReplace,
+          transitionDuration: Duration(milliseconds: 0),
         );
       }
     }

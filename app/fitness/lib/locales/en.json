@@ -12,11 +12,36 @@
     "application": {
         "name": "Fitness"
     },
+    "cardioFields": {
+        "cooldown": "Cooldown",
+        "countdown": "Countdown",
+        "cycles": "Cycles",
+        "exercise": "Exercise",
+        "recoveryInterval": "Recovery Interval",
+        "rest": "Rest",
+        "sets": "Sets",
+        "warmup": "Warmup"
+    },
     "changePasswordPage": {
         "title": "Change Password"
     },
+    "createCardioWorkoutPage": {
+        "configuration": "Configuration",
+        "minAndSec": "{count, min, =0 null, =1 # min., >1 # mins.} {count, sec, =0 null, =1 # sec., >1 # secs.}",
+        "sec": "{count, sec, =0 # secs., =1 # sec., >1 # secs.}",
+        "title": "Cardio Workout"
+    },
     "createExercisePage": {
         "title": "Create Exercise"
+    },
+    "createWeightsWorkoutPage": {
+        "addExercise": "Add Exercise",
+        "addSet": "Add Set",
+        "configuration": "Configuration",
+        "repsRange": "Reps Range",
+        "restRange": "Rest Range",
+        "settings": "Settings",
+        "title": "Weights Workout"
     },
     "createWorkoutPage": {
         "title": "Create Workout"
@@ -38,6 +63,8 @@
         "3001": "Exercise could not be found",
         "3002": "Invalid parameters",
         "3003": "Exercises could not be found",
+        "4000": "Failed to create workout",
+        "4001": "Invalid parameters",
         "unknown": "Unknown Error"
     },
     "errors": {
@@ -51,7 +78,8 @@
         "oldPasswordRequired": "Old password is required",
         "passwordRequired": "Password is required",
         "passwordsDoNotMatch": "Passwords don't match",
-        "usernameRequired": "Username is required"
+        "usernameRequired": "Username is required",
+        "workoutNameRequired": "Workout name is required"
     },
     "exerciseFields": {
         "name": "Name",
@@ -67,6 +95,10 @@
         "machine": "Machine",
         "medicineBall": "Medicine Ball",
         "resistanceBand": "Resistance Band"
+    },
+    "generalInterface": {
+        "cancel": "Cancel",
+        "save": "Save"
     },
     "loginPage": {
         "createAccount": "Create Account",
@@ -95,6 +127,12 @@
         "login": "Login",
         "signUp": "Signup"
     },
+    "timeUnit": {
+        "min": "min",
+        "mins": "mins",
+        "sec": "sec",
+        "secs": "secs"
+    },
     "userFields": {
         "confirmPassword": "Confirm Password",
         "email": "Email",
@@ -105,7 +143,17 @@
         "password": "Password",
         "username": "Username"
     },
+    "workoutFields": {
+        "name": "Name",
+        "reps": "Reps",
+        "rest": "Rest",
+        "sets": "Sets"
+    },
     "workoutHomePage": {
         "title": "Workouts"
+    },
+    "workoutTypes": {
+        "cardio": "Cardio",
+        "weights": "Weights"
     }
 }

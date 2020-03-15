@@ -99,7 +99,14 @@ class AppLocalizations {
           operation == '>' && value > number ||
           operation == '<=' && value <= number ||
           operation == '>=' && value >= number) {
-        return text.replaceAll('#', value.toString());
+
+        String returnValue = text.replaceAll('#', value.toString());
+
+        if (returnValue == 'null') {
+          return '';
+        }
+
+        return returnValue;
       }
     }
 

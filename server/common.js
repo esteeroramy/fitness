@@ -9,6 +9,8 @@ const config = require('./config.js');
  * 
  * 1000 -> system
  * 2000 -> users
+ * 3000 -> exercises
+ * 4000 -> workouts
  */
 const errors = Object.freeze({
     // system
@@ -31,7 +33,11 @@ const errors = Object.freeze({
     3000: 'failed to save exercise, database issue',
     3001: 'failed to find exercise, database issue',
     3002: 'invalid exercise parameters',
-    3003: 'failed to query exercises, database issue'
+    3003: 'failed to query exercises, database issue',
+
+    // workouts
+    4000: 'failed to save exercise, database issue',
+    4001: 'invalid workout parameters',
 });
 exports.errors = errors;
 
@@ -57,7 +63,11 @@ const errorStatusCodes = Object.freeze({
     3000: 500,
     3001: 500,
     3002: 422,
-    3003: 500
+    3003: 500,
+
+    // workouts
+    4000: 500,
+    4001: 422
 })
 exports.errorStatusCodes = errorStatusCodes;
 
@@ -95,6 +105,13 @@ const weights = Object.freeze({
     RESISTANCEBAND: 'resistanceBand'
 });
 exports.weights = weights;
+
+// workout types
+const workoutTypes = Object.freeze({
+    CARDIO: 'cardio',
+    WEIGHTS: 'weights'
+});
+exports.workoutTypes = workoutTypes;
 
 /**
  * Returns the current date
