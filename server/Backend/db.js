@@ -4,6 +4,7 @@ const common = require('../common.js');
 const config = require('./config.js');
 const db_exercises = require('./dbs/db-exercises.js');
 const db_users = require('./dbs/db-users.js');
+const db_workouts = require('./dbs/db-workouts.js');
 
 /**
  * Initializes the connection to the database
@@ -35,3 +36,7 @@ exports.getUserById = db_users.getUserById;
 exports.getUserByUsername = db_users.getUserByUsername;
 exports.updateById = db_users.updateById;
 // </Users Collection> -------------------------------------------------
+
+// <Workouts Collection> -------------------------------------------------
+exports.createWorkout = db_workouts.createWorkout;
+// </Workouts Collection> -------------------------------------------------

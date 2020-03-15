@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:states_rebuilder/states_rebuilder.dart';
 
 import 'package:fitness/global/enums/enums.dart';
 import 'package:fitness/global/exceptionHandler/exceptionHandler.dart';
+import 'package:fitness/models/exercise..dart';
 import 'package:fitness/routes.dart';
 import 'package:fitness/services/exerciseRepository.dart';
 import 'package:fitness/services/meRepository.dart';
@@ -36,10 +38,10 @@ class CreateExerciseController {
     _selectedExerciseWeight = value;
   }
 
-  createExercise(BuildContext context, Map<String, String> data) async {
-    String accessToken = MeRepository.accessToken;
-
+  createExercise(BuildContext context, ReactiveModel createWeightsWorkoutReactiveModel, Map<String, String> data) async {
     _isLoading = true;
+
+    String accessToken = MeRepository.accessToken;
 
     data['weight'] = ENUMS['exerciseWeights'][_selectedExerciseWeight];
 
@@ -52,7 +54,9 @@ class CreateExerciseController {
         _hasError = false;
         _errorMessage = '';
 
-        Routes.sailor.pop();
+        Exercise exercise = Exercise.fromMap(response.body);
+        createWeightsWorkoutReactiveModel.setState((controller) => controller.addExercise(exercise));
+        Routes.sailor.popUntil((route) => route.settings.name == '/createweightsworkout');
       }
     } catch (exception) {
       _hasError = true;

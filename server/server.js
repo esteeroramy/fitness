@@ -47,6 +47,7 @@ app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpd
 // <Put Requests> -----------------------------------------------
 app.put('/exercises/create', common.setVerificationToken, api.handleExercisesCreatePath);
 app.put('/users/create', api.handleUsersCreatePath);
+app.put('/workouts/create', common.setVerificationToken, api.handleWorkoutsCreatePath);
 // </Put Requests> -----------------------------------------------
 
 // <Delete Requests> -----------------------------------------------

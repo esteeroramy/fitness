@@ -35,7 +35,7 @@ const createExercise = (req, res) => {
                 return res.status(common.getStatus(err)).send(err);
             }
 
-            return res.status(200).send('ok');
+            return res.status(200).send(exerciseObject);
         });
     });
 };

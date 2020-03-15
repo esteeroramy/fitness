@@ -12,8 +12,10 @@ class SplashScreen extends StatelessWidget {
       builder: (_) => StateBuilder<SplashScreenController>(
         models: [Injector.getAsReactive<SplashScreenController>()],
         builder: (context, reactiveModel) {
-          WidgetsBinding.instance.addPostFrameCallback((_) => reactiveModel
-              .setState((controller) => controller.backgroundWork()));
+          if (reactiveModel.state.isFirstLoad) {
+            WidgetsBinding.instance.addPostFrameCallback((_) => reactiveModel
+                .setState((controller) => controller.backgroundWork()));
+          }
 
           return Scaffold(
             body: Container(

@@ -95,6 +95,18 @@ class Routes {
           return CreateExercise();
         },
       ),
+      SailorRoute(
+        name: '/createcardioworkout',
+        builder: (context, args, params) {
+          return CreateCardioWorkout();
+        },
+      ),
+      SailorRoute(
+        name: '/createweightsworkout',
+        builder: (context, args, params) {
+          return CreateWeightsWorkout();
+        },
+      ),
     ]);
   }
 }
