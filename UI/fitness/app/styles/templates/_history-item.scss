@@ -1,0 +1,46 @@
+.history-item {
+    .item {
+        border: 2px solid $secondary-text-color;
+        border-radius: 9px;
+        box-sizing: border-box;
+        color: $primary-text-color;
+        display: inline-block;
+        font-size: 16px;
+        padding: 12px;
+        text-decoration: none;
+        width: 100%;
+
+        .name {
+            color: $primary-text-color;
+            font-size: 16px;
+            padding-bottom: 5px;
+        }
+
+        .logged-date {
+            color: $secondary-text-color;
+            font-size: 16px;
+            padding-bottom: 5px;
+        }
+
+        .duration {
+            color: $secondary-text-color;
+            font-size: 16px;
+            padding-bottom: 5px;
+
+            i {
+                font-size: 20px;
+                padding-right: 5px;
+            }
+        }
+
+        .exercises-title {
+            color: $primary-text-color;
+            font-size: 16px;
+        }
+
+        .exercise-item {
+            color: $secondary-text-color;
+            font-size: 16;
+        }
+    }
+}

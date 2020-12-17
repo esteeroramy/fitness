@@ -6,11 +6,12 @@ const config = require('./config.js');
 
 /**
  * Errors
- * 
+ *
  * 1000 -> system
  * 2000 -> users
  * 3000 -> exercises
  * 4000 -> workouts
+ * 5000 -> workoutlogs
  */
 const errors = Object.freeze({
     // system
@@ -36,8 +37,16 @@ const errors = Object.freeze({
     3003: 'failed to query exercises, database issue',
 
     // workouts
-    4000: 'failed to save exercise, database issue',
+    4000: 'failed to save workout, database issue',
     4001: 'invalid workout parameters',
+    4002: 'failed to query workouts, database issue',
+    4003: 'failed to find workout, database issue',
+    4004: 'failed to update workout, database issue',
+
+    // workoutlogs
+    5000: 'failed to save workoutlog, database issue',
+    5001: 'failed to get workoutlog, database issue',
+    5002: 'failed to delete workoutlog, database issue'
 });
 exports.errors = errors;
 

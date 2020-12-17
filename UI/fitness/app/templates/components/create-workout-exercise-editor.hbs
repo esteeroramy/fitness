@@ -1,0 +1,51 @@
+<div>
+    <div class="row no-padding title-row">
+        <div class="col-10 name">{{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})</div>
+        <div class="col-2 delete-exercise-section">
+            <a class="ui-delete-button delete-exercise" onClick={{action "deleteExercise"}}>X</a>
+        </div>
+    </div>
+    <div class="row no-padding set-headers">
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "createWorkoutExerciseEditor.set"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "createWorkoutExerciseEditor.minReps"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "createWorkoutExerciseEditor.maxReps"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "createWorkoutExerciseEditor.minRest"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "createWorkoutExerciseEditor.maxRest"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center"></div>
+    </div>
+    {{#each exercise.sets as | set index |}}
+        <div class="row no-padding set-row">
+            <div class="col-2 no-padding text-align-center">
+                <span class="set-number">{{add index 1}}</span>
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" value=set.minReps}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" value=set.maxReps}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" value=set.minRest}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" value=set.maxRest}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                <a class="ui-delete-button delete-set" onClick={{action "deleteSet" index}}>X</a>
+            </div>
+        </div>
+    {{/each}}
+    <div class="row no-padding add-exercise-row">
+        <a class="ui-tertiary-button add-exercise" onClick={{action "addSet"}}>{{md-icon "add"}}{{t "createWorkoutExerciseEditor.addSet"}}</a>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+.create-exercise-modal {
+    background-color: $background-color;
+    height: 30%;
+    width: 90%;
+
+    .exit-button {
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .save-button {
+        font-size: 16px;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .save-loading {
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .preloader-wrapper {
+            height: 20px;
+            width: 20px;
+        }
+    }
+
+    .modal-title {
+        color: $primary-text-color;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .equipment-section {
+        height: 100%;
+        padding: 30px 0px 0px 0px;
+
+        .title {
+            color: $primary-text-color;
+            font-size: 16px;
+        }
+
+        .selected {
+            color: $secondary-text-color;
+            display: inline-flex;
+            font-size: 16px;
+            justify-content: flex-end;
+            text-align: right;
+        }
+    }
+
+    .selecting-equipment {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        min-height: 100%;
+
+        .title-section {
+            display: flex;
+            padding-bottom: 20px;
+        }
+
+        .equipment-list {
+            display: flex;
+            flex: 1;
+		    flex-direction: column;
+            overflow: auto;
+            padding-left: 10px;
+
+            .equipment-item {
+                padding-bottom: 15px;
+
+                &:last-child {
+                    padding-bottom: 5px;
+                }
+
+                .equipment {
+                    color: $primary-text-color;
+                    font-size: 16px;
+                }
+            }
+        }
+
+    }
+}

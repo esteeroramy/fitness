@@ -10,6 +10,12 @@ Router.map(function() {
   this.route('login');
   this.route('home', { path: '/' });
   this.route('register');
+  this.route('profile');
+  this.route('history');
+  this.route('exercises');
+  this.route('measurements');
+  this.route('create-workout');
+  this.route('workout-in-progress');
 });
 
 export default Router;

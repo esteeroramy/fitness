@@ -1,0 +1,41 @@
+<div>
+    <div class="row no-padding title-row">
+        <div class="col-12 name">{{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})</div>
+    </div>
+    <div class="row no-padding set-headers">
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "workoutInProgressExerciseEditor.set"}}</span>
+        </div>
+        <div class="col-4 no-padding text-align-center">
+            <span>{{t "workoutInProgressExerciseEditor.previous"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "weightUnits.lbs"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{t "workoutInProgressExerciseEditor.reps"}}</span>
+        </div>
+        <div class="col-2 no-padding text-align-center">
+            <span>{{md-icon "check"}}</span>
+        </div>
+    </div>
+    {{#each exercise.sets as | set index |}}
+        <div class="row no-padding set-row {{if set.done "done"}}">
+            <div class="col-2 no-padding text-align-center">
+                <span class="set-number">{{add index 1}}</span>
+            </div>
+            <div class="col-4 no-padding text-align-center previous-text">
+                {{set.previous}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" value=set.weight}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                {{input class="ui-primary-input" type="text" placeholder=set.repsPlaceholder value=set.reps}}
+            </div>
+            <div class="col-2 no-padding text-align-center">
+                <a class="ui-check-button check-set {{if set.done "done"}}" onClick={{action "toggleSet" set}}>{{md-icon "check"}}</a>
+            </div>
+        </div>
+    {{/each}}
+</div>

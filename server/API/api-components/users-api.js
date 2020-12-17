@@ -47,7 +47,12 @@ const createUser = (req, res) => {
             return res.status(common.getStatus(err)).send(err);
         }
 
-        return res.status(200).send('ok');
+        const objectToReturn = {
+            id: userObject._id,
+            username: userObject.username
+        }
+
+        return res.status(200).send(objectToReturn);
     });
 };
 
@@ -83,7 +88,7 @@ const login = (req, res) => {
             username
         };
 
-        jwt.sign({ signObject }, config.secret, { expiresIn: '365d' }, (err, token) => {
+        jwt.sign({ signObject }, config.secret, { expiresIn: '1000d' }, (err, token) => {
             if (err) {
                 return res.status(common.getStatus(2005)).send(err);
             }

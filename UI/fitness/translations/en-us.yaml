@@ -1,5 +1,33 @@
+addExerciseModalPage:
+    add: 'Add'
+    new: 'New'
+    search: 'Search'
 application:
     name: 'Fitness'
+common:
+    none: 'None'
+createExerciseModalPage:
+    equipment: 'Equipment'
+    save: 'Save'
+    title: 'Create New Exercise'
+createWorkoutExerciseEditor:
+    addSet: 'Add Set'
+    maxReps: 'Max Reps'
+    maxRest: 'Max Rest'
+    minReps: 'Min Reps'
+    minRest: 'Min Rest'
+    set: 'Set'
+createWorkoutPage:
+    addExercise: 'Add Exercise'
+    editingTitle: 'Edit Routine'
+    finish: 'Finish'
+    save: 'Save'
+    title: 'Create Routine'
+    workoutName: 'Workout Name'
+duration:
+    h: 'h'
+    min: 'min.'
+    sec: 'sec.'
 errorCodes:
     1000: 'Invalid request'
     1001: 'Server error, please try again later'
@@ -35,13 +63,39 @@ errors:
             weight {Weight must be a number greater than 0}
             other {This field is not valid}
         }
+exerciseEquipment:
+    barbell: 'Barbell'
+    bodyWeight: 'Body Weight'
+    cable: 'Cable'
+    dumbbell: 'Dumbbell'
+    freeWeight: 'Free Weight'
+    kettlebell: 'Kettlebell'
+    machine: 'Machine'
+    medicineBall: 'Medicine Ball'
+    resistanceBand: 'Resistance Band'
+exercisesPage:
+    title: 'Exercises'
+historyItem:
+    exercises: 'Exercises'
+historyItemDetailModal:
+    delete: 'Delete'
+historyPage:
+    title: 'History'
+homePage:
+    routine: 'Routine'
+    routines: 'Routines'
+    title: 'Start Workout'
 loginPage:
     login: 'Login'
     register: 'Don''t have an account? Register'
+measurementsPage:
+    title: 'Measurements'
+profilePage:
+    title: 'Profile'
 registerPage:
-    login: "Already have an account? Login"
+    login: 'Already have an account? Login'
     register: 'Register'
-    title: "Register"
+    title: 'Register'
 userFields:
     confirmedPassword: 'Confirm Password'
     email: 'Email'
@@ -53,4 +107,15 @@ userFields:
     weightUnit: 'Weight Unit'
 weightUnits:
     kg: 'Kg'
+    kgs: 'Kgs'
     lb: 'Lb'
+    lbs: 'Lbs'
+workoutInProgressExerciseEditor:
+    previous: 'Previous'
+    reps: 'Reps'
+    set: 'Set'
+workoutInProgressPage:
+    cancelWorkout: 'Cancel Workout'
+workoutOverviewModal:
+    edit: 'Edit'
+    startWorkout: 'Start Workout'

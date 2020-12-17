@@ -1,0 +1,86 @@
+.home {
+    background-color: $background-color;
+    height: 100%;
+
+    .page-data {
+        display: flex;
+        flex-direction: column;
+        height: calc(100% - 56px);
+
+        .page-title {
+            color: $primary-text-color;
+            font-size: 32px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 30px;
+        }
+
+        .routines {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+
+            .routine-text {
+                color: $primary-text-color;
+                font-size: 24px;
+            }
+
+            .row {
+                margin-right: 0;
+            }
+
+            .add-routine {
+                position: relative;
+
+                .add-button {
+                    bottom: 3px;
+                    position: absolute;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    .user-routines {
+        overflow: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .workout-item {
+            border: 2px solid $secondary-text-color;
+            border-radius: 9px;
+            box-sizing: border-box;
+            display: inline-block;
+            font-size: 16px;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .name {
+                color: $primary-text-color;
+            }
+
+            .exercises {
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                color: $secondary-text-color;
+                display: -webkit-box;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                i {
+                    font-size: 10px;
+                    padding-top: 7px;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+            }
+        }
+    }
+
+    .navbar-section {
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+    }
+}

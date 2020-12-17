@@ -4,8 +4,7 @@ const workouts_api = require('./api-components/workouts-api.js');
 
 // <Exercises Requests> ------------------------------------------------
 exports.handleExercisesCreatePath = exercises_api.createExercise;
-exports.handleExercisesCustomQueryPath = exercises_api.queryCustomExercises;
-exports.handleExercisesPredefinedQueryPath = exercises_api.queryPredefinedExercises;
+exports.handleExercisesGetPath = exercises_api.getExercises;
 // </Exercises Requests> ------------------------------------------------
 
 // <Users Requests> ------------------------------------------------
@@ -18,5 +17,11 @@ exports.handleUsersUpdateProfile = users_api.updateProfile;
 // </Users Requests> ------------------------------------------------
 
 // <Workouts Requests> ------------------------------------------------
+exports.handleHistoriesGetPath = workouts_api.getHistories;
+exports.handleHistoriesDeletePath = workouts_api.deleteHistories;
 exports.handleWorkoutsCreatePath = workouts_api.createWorkout;
+exports.handleWorkoutsEditPath = workouts_api.editWorkout;
+exports.handleWorkoutsGetPath = workouts_api.getWorkouts;
+exports.handleWorkoutsLogPath = workouts_api.logWorkout;
+exports.handleLatestWorkoutslogsGetPath = workouts_api.getLatestWorkoutslog;
 // </Workouts Requests> ------------------------------------------------

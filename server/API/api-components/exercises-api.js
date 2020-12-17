@@ -5,9 +5,9 @@ const exercises = require('../../Backend/exercises.js');
 
 /**
  * Create a new exercise
- * 
- * @param {Object} req 
- * @param {Object} res 
+ *
+ * @param {Object} req
+ * @param {Object} res
  */
 const createExercise = (req, res) => {
     common.verifyToken (req, res, (req, res) => {
@@ -41,34 +41,16 @@ const createExercise = (req, res) => {
 };
 
 /**
- * returns the minified list of exercises created by the user
- * 
- * @param {Object} req 
- * @param {Object} res 
+ * returns the list of exercises
+ *
+ * @param {Object} req
+ * @param {Object} res
  */
-const queryCustomExercises = (req, res) => {
+const getExercises = (req, res) => {
     common.verifyToken (req, res, (req, res) => {
         const userId = req.authData.signObject._id;
 
-        exercises.queryCustomExercises(userId, (err, exercises) => {
-            if (err) {
-                return res.status(common.getStatus(err)).send(err);
-            }
-
-            return res.status(200).send(exercises);
-        });
-    });
-};
-
-/**
- * returns the minified list of predefined exercises
- * 
- * @param {Object} req 
- * @param {Object} res 
- */
-const queryPredefinedExercises = (req, res) => {
-    common.verifyToken (req, res, (req, res) => {
-        exercises.queryPredefinedExercises((err, exercises) => {
+        exercises.getExercises(userId, (err, exercises) => {
             if (err) {
                 return res.status(common.getStatus(err)).send(err);
             }
@@ -80,6 +62,5 @@ const queryPredefinedExercises = (req, res) => {
 
 // <exports> ------------------------------------------------
 exports.createExercise = createExercise;
-exports.queryCustomExercises = queryCustomExercises;
-exports.queryPredefinedExercises = queryPredefinedExercises;
+exports.getExercises = getExercises;
 // </exports> ------------------------------------------------

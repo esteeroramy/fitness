@@ -1,0 +1,60 @@
+.workout-overview-modal {
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    max-height: 90%;
+    padding: 0;
+    width: 90%;
+
+    .top-row {
+        display: flex;
+        padding: 10px 10px 20px 10px;
+
+        .exit-button {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .workout-name {
+            color: $primary-text-color;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .edit-workout-section {
+            text-align: right;
+            padding-right: 5px !important;
+
+            .edit-button {
+                font-size: 16px;
+                font-weight: bold;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .exercise-list {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .exercise {
+            color: $primary-text-color;
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+    }
+
+    .start-workout-button {
+        font-size: 18px;
+        justify-content: center;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        width: 100%;
+    }
+}

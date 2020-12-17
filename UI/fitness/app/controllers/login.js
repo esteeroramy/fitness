@@ -4,53 +4,54 @@ import { isPresent } from '@ember/utils';
 
 export default Controller.extend({
     exceptionHandler: service(),
+    application: service(),
     session: service(),
 
     /**
      * The username to login with
-     * 
+     *
      * @type {String}
      */
     username: '',
 
     /**
      * The password to login with
-     * 
+     *
      * @type {String}
      */
     password: '',
 
     /**
      * If we are waiting on the API to log in the user
-     * 
+     *
      * @type {Boolean}
      */
     isLoading: false,
 
     /**
      * The error message coming from the API
-     * 
+     *
      * @type {String}
      */
     loginErrorMessage: null,
-    
+
     /**
      * If the username is present after submitting
-     * 
+     *
      * @type {Boolean}
      */
     isUsernamePresenceValid: true,
 
     /**
      * If the password is present after submitting
-     * 
+     *
      * @type {Boolean}
      */
     isPasswordPresenceValid: true,
 
     /**
      * Validates the fields and returns true if the fields are valid.
-     * 
+     *
      * @returns {Boolean} If the fields are all valid
      */
     areFieldsValid() {
@@ -102,12 +103,13 @@ export default Controller.extend({
 
                 this.get('session').authenticate('authenticator:oauth2', username, password).then(() => {
                     this.set('isLoading', false);
+                    this.get('application.startUpTask').perform();
                 }, (exception) => {
                     this.setProperties({
                         isLoading: false,
                         loginErrorMessage: this.get('exceptionHandler').getErrorMessage(exception)
                     });
-                });           
+                });
             }
         }
     }

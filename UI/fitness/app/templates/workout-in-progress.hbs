@@ -1,0 +1,32 @@
+<div class="workout-in-progress">
+    <div class="header-data">
+        <div class="row">
+            <div class="col-4">
+                {{#if workoutInProgressRepository.restTimeEnabled}}
+                    <div class="progress rest-timer {{if workoutInProgressRepository.isRestTimeGreen "rest-timer-green"}}">
+                        <div class="progress-bar" role="progressbar" aria-valuenow={{workoutInProgressRepository.restPercentageLeft}} aria-valuemin="0" aria-valuemax="100" style="width:{{workoutInProgressRepository.restPercentageLeft}}%">
+                            <span class="progress-bar-text">{{workoutInProgressRepository.restTimeLeft}}</span>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+            <div class="col-4 timer">
+                {{workoutInProgressRepository.workoutElapsedTime}}
+            </div>
+            <div class="col-4 text-align-right">
+                <a class="ui-success-button save-workout" {{action "saveWorkout"}}>{{t "createWorkoutPage.finish"}}</a>
+            </div>
+        </div>
+    </div>
+    <hr class="divider">
+    <div class="page-data">
+        <div class="exercise-list">
+            {{#each workoutInProgressRepository.exerciseProgress as | exercise |}}
+                {{workout-in-progress-exercise-editor
+                    exercise=exercise
+                    onStartRestTimer=(action "startRestTimer")}}
+            {{/each}}
+        </div>
+        <a class="ui-delete-button cancel-workout" {{action "cancelWorkout"}}>{{t "workoutInProgressPage.cancelWorkout"}}</a>
+    </div>
+</div>

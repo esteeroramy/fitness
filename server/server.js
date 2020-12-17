@@ -27,28 +27,33 @@ app.listen(config.port, () => {
             process.exit(1);
         }
 
-        console.log('Connected to the database');        
+        console.log('Connected to the database');
     });
 });
 
 // <Get Requests> -----------------------------------------------
-app.get('/exercises/custom/_query', common.setVerificationToken, api.handleExercisesCustomQueryPath);
-app.get('/exercises/predefined/_query', common.setVerificationToken, api.handleExercisesPredefinedQueryPath);
+app.get('/exercises', common.setVerificationToken, api.handleExercisesGetPath);
+app.get('/histories', common.setVerificationToken, api.handleHistoriesGetPath);
 app.get('/me', common.setVerificationToken, api.handleGetMePath);
-app.get('/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
+app.get('/workoutlogs/:id', common.setVerificationToken, api.handleLatestWorkoutslogsGetPath);
+app.get('/workouts', common.setVerificationToken, api.handleWorkoutsGetPath);
+// app.get('/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
 // </Get Requests> -----------------------------------------------
 
 // <Post Requests> -----------------------------------------------
 app.post('/login', api.handleLoginPath);
-app.post('/users/updatePassword', common.setVerificationToken, api.handleUsersUpdatePassword);
-app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpdateProfile);
+app.post('/workoutlogs', common.setVerificationToken, api.handleWorkoutsLogPath);
+app.post('/users/create', api.handleUsersCreatePath);
+app.post('/exercises', common.setVerificationToken, api.handleExercisesCreatePath);
+app.post('/workouts', common.setVerificationToken, api.handleWorkoutsCreatePath);
 // </Post Requests> -----------------------------------------------
 
 // <Put Requests> -----------------------------------------------
-app.put('/exercises/create', common.setVerificationToken, api.handleExercisesCreatePath);
-app.put('/users/create', api.handleUsersCreatePath);
-app.put('/workouts/create', common.setVerificationToken, api.handleWorkoutsCreatePath);
+// app.post('/users/updatePassword', common.setVerificationToken, api.handleUsersUpdatePassword);
+// app.post('/users/updateProfile', common.setVerificationToken, api.handleUsersUpdateProfile);
+app.put('/workouts/:id', common.setVerificationToken, api.handleWorkoutsEditPath);
 // </Put Requests> -----------------------------------------------
 
 // <Delete Requests> -----------------------------------------------
+app.delete('/histories/:id', common.setVerificationToken, api.handleHistoriesDeletePath);
 // </Delete Requests> -----------------------------------------------

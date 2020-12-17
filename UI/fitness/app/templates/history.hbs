@@ -1,0 +1,21 @@
+<div class="history">
+    <div class="page-data">
+        <div class="page-title">
+            {{t "historyPage.title"}}
+        </div>
+
+        <div class="history-list">
+            {{#each historyRepository.histories as | history |}}
+                <div class="col-12 no-padding history-list-item">
+                    {{history-item
+                        history=history}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="navbar-section">
+        {{navbar
+            page=enums.pages.history}}
+    </div>
+</div>

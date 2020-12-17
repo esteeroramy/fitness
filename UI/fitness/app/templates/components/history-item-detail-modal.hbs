@@ -1,0 +1,52 @@
+{{#if isModalVisible}}
+    {{#modal-dialog
+        onClose=(action "closeModal")
+        targetAttachment="center"
+        translucentOverlay=true
+        onClickOverlay=(action "closeModal")
+        overlayClass="overlay-style"
+        containerClass="history-item-detail-modal"}}
+
+        <div class="top-row">
+            <div class="row no-margin title-row">
+                <div class="col-3 no-padding">
+                    <a class="ui-tertiary-button exit-button" onclick={{action onClose}}>X</a>
+                </div>
+                <div class="col-6 no-padding workout-name">
+                    {{log.name}}
+                </div>
+                <div class="col-3 no-padding delete-workout-section">
+                    <a class="ui-delete-button delete-button" onclick={{action "deleteLog"}}>{{t "historyItemDetailModal.delete"}}</a>
+                </div>
+            </div>
+            <div class="row no-margin logged-date">
+                {{loggedDate}}
+            </div>
+
+            <div class="row no-margin duration">
+                {{md-icon "access_time"}} {{duration}}
+            </div>
+        </div>
+        <div class="exercise-list">
+            {{#each log.configuration.exercises as | exercise |}}
+                <div class="row no-margin exercise-name">
+                    {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+                </div>
+                {{#each exercise.sets as | exerciseSet index |}}
+                    <div class="row no-margin set-row">
+                        <div class="col-1 no-padding">
+                            {{add index 1}}
+                        </div>
+                        <div class="col-11 no-padding">
+                            {{#if exerciseSet.done}}
+                                {{exerciseSet.weight}} {{t 'weightUnits.lb'}} x {{exerciseSet.reps}}
+                            {{else}}
+                                -
+                            {{/if}}
+                        </div>
+                    </div>
+                {{/each}}
+            {{/each}}
+        </div>
+    {{/modal-dialog}}
+{{/if}}
