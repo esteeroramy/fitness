@@ -229,7 +229,7 @@ export default Controller.extend({
     /**
      * Register the user
      */
-    registerUserTask: task(function*() {
+    registerUserTask: task(function* () {
         if (this.areFieldsValid()) {
             const username = this.get('username');
             const password = this.get('password');
@@ -255,6 +255,8 @@ export default Controller.extend({
                 const user = this.get('store').createRecord('user', userObject);
 
                 yield user.save();
+
+                this.transitionToRoute('login');
             } catch (exception) {
                 this.set('registerErrorMessage', this.get('exceptionHandler').getErrorMessage(exception));
             }

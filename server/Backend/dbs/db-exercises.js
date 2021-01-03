@@ -2,10 +2,10 @@ const common = require('../../common.js');
 const exercise = require('./models/exercise');
 
 /**
- * 
- * @param {String} userId 
- * @param {Object} exerciseObject 
- * @param {Function} callback 
+ *
+ * @param {String} userId
+ * @param {Object} exerciseObject
+ * @param {Function} callback
  * @returns {Function}
  */
 const createExercise = function(userId, exerciseObject, callback) {
@@ -26,30 +26,15 @@ const createExercise = function(userId, exerciseObject, callback) {
 };
 
 /**
- * Finds all exercises created by the creatorId
- * 
- * @param {String} creatorId 
- * @param {Function} callback 
+ * Finds all exercises for the user
+ *
+ * @param {String} creatorId
+ * @param {Function} callback
  */
-const getExercisesByCreatorId = function(creatorId, callback) {
-    exercise.find({ creatorId }, function(err, exercises) {
+const getExercises = function(creatorId, callback) {
+    exercise.find({ $or:[ { creatorId }, { creatorId : 'system' } ] }, function(err, exercises) {
         if (err) {
-            return callback(common.getError(3003), null);
-        }
-
-        return callback(null, exercises);
-    });
-}
-
-/**
- * Finds all predefined exercises
- * 
- * @param {Function} callback 
- */
-const getPredefinedExercises = function(callback) {
-    exercise.find({ creatorId: 'system' }, function(err, exercises) {
-        if (err) {
-            return callback(common.getError(3003), null);
+            return callback(common.getError(4002), null);
         }
 
         return callback(null, exercises);
@@ -58,6 +43,5 @@ const getPredefinedExercises = function(callback) {
 
 // <exports> -----------------------------------
 exports.createExercise = createExercise;
-exports.getExercisesByCreatorId = getExercisesByCreatorId;
-exports.getPredefinedExercises = getPredefinedExercises;
+exports.getExercises = getExercises;
 // </exports> -----------------------------------

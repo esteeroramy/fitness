@@ -1,0 +1,16 @@
+.exercises {
+    background-color: $background-color;
+    height: 100%;
+
+    .page-title {
+        color: $primary-text-color;
+        font-size: 32px;
+        padding: 30px 0px 0px 20px;
+    }
+
+    .navbar-section {
+        bottom: 0;
+        position: fixed;
+        width: 100%;
+    }
+}

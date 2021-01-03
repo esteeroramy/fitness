@@ -1,0 +1,39 @@
+<div class="create-workout">
+    <div class="header-data">
+        <div class="row">
+            <div class="col-3">
+                {{#link-to "home" class="ui-tertiary-button exit-button"}}X{{/link-to}}
+            </div>
+            <div class="col-6 title">
+                {{#if isEditing}}
+                    {{t "createWorkoutPage.editingTitle"}}
+                {{else}}
+                    {{t "createWorkoutPage.title"}}
+                {{/if}}
+            </div>
+            <div class="col-3 text-align-right">
+                <a class="ui-secondary-button save-workout" {{action "saveWorkout"}}>{{t "createWorkoutPage.save"}}</a>
+            </div>
+        </div>
+    </div>
+    <hr class="divider">
+    <div class="page-data">
+        <div class="row no-margin workout-name-section">
+            {{input class="ui-primary-input" type="text" placeholder=(t "createWorkoutPage.workoutName") value=workoutName}}
+        </div>
+        <div class="exercise-list">
+            {{#each exercises as | exercise |}}
+                {{create-workout-exercise-editor
+                    exercise=exercise
+                    onDeleteExercise=(action "deleteExercise")}}
+            {{/each}}
+        </div>
+        <a class="ui-secondary-button add-exercise" {{action "openAddExerciseModal"}}>{{t "createWorkoutPage.addExercise"}}</a>
+    </div>
+</div>
+
+{{add-exercise-modal
+    isModalVisible=isAddExerciseModalVisible
+    exercises=availableExercises
+    onSave=(action "addExercises")
+    onClose=(action "closeAddExerciseModal")}}

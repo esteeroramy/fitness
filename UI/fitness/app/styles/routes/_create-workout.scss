@@ -1,0 +1,48 @@
+.create-workout {
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .header-data {
+        padding: 15px 20px 0px 20px;
+
+        .exit-button {
+            font-size: 16px;
+            font-weight: bold;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .title {
+            color: $primary-text-color;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .row {
+            margin-bottom: 0;
+        }
+    }
+
+    .divider {
+        border: 1px;
+        color: $secondary-text-color;
+        margin: 15px 0;
+    }
+
+    .page-data {
+        overflow: auto;
+        padding: 10px 20px 20px 20px;
+
+        .workout-name-section {
+            padding-bottom: 10px;
+        }
+
+        .add-exercise {
+            display: inline-block;
+            font-size: 20px;
+            width: 100%;
+        }
+    }
+}

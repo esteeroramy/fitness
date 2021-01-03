@@ -1,0 +1,76 @@
+.history-item-detail-modal {
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    max-height: 90%;
+    padding: 0;
+    width: 90%;
+
+    .top-row {
+        padding: 10px 10px 0px 10px;
+
+        .title-row {
+            padding-bottom: 5px;
+
+            .exit-button {
+                font-size: 16px;
+                font-weight: bold;
+                margin-right: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .workout-name {
+                color: $primary-text-color;
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+
+        .logged-date {
+            color: $secondary-text-color;
+            font-size: 16px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+        }
+
+        .duration {
+            color: $secondary-text-color;
+            font-size: 16px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+
+            i {
+                font-size: 20px;
+                padding-right: 5px;
+            }
+        }
+
+        .delete-workout-section {
+            text-align: right;
+            padding-right: 5px !important;
+
+            .delete-button {
+                font-size: 16px;
+                font-weight: bold;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .exercise-list {
+        padding-left: 15px;
+        padding-right: 15px;
+
+        .exercise-name {
+            color: $primary-text-color;
+            font-size: 16px;
+        }
+
+        .set-row {
+            color: $secondary-text-color;
+            font-size: 16px;
+        }
+    }
+}

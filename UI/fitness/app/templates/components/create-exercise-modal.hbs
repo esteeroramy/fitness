@@ -1,0 +1,52 @@
+{{#if isModalVisible}}
+    {{#modal-dialog
+        onClose=(action onClose)
+        targetAttachment="center"
+        translucentOverlay=true
+        onClickOverlay=(action "closeModal")
+        overlayClass="overlay-style"
+        containerClass="create-exercise-modal"}}
+
+    {{#if isSelectingEquipment}}
+        <div class="selecting-equipment">
+            <div class="row no-margin title-section">
+                <div class="col-2">
+                    <a class="ui-tertiary-button exit-button" onclick={{action "hideSelectEquipment"}}>X</a>
+                </div>
+                <div class="col-8 modal-title">{{t "createExerciseModalPage.equipment"}}</div>
+                <div class="col-2"></div>
+            </div>
+            <div class="equipment-list">
+                {{#each equipmentOptions as | item |}}
+                <div class="equipment-item">
+                    <a class="equipment" onClick={{action "selectEquipment" item.key}}>{{item.name}}</a>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    {{else}}
+        <div class="row col-12">
+            <div class="col-2">
+                <a class="ui-tertiary-button exit-button" onclick={{action "closeModal"}}>X</a>
+            </div>
+            <div class="col-8 modal-title">{{t "createExerciseModalPage.title"}}</div>
+            <div class="col-2">
+                {{#if createExercise.isRunning}}
+                    <div class="save-loading">
+                        {{partial "loading-spinner"}}
+                    </div>
+                {{else}}
+                    <a class="ui-secondary-button save-button" onclick={{action "save"}}>{{t "createExerciseModalPage.save"}}</a>
+                {{/if}}
+            </div>
+        </div>
+        <div class="row col-12 no-margin">
+            {{input class="ui-primary-input" type="text" value=exerciseName}}
+        </div>
+        <a class="row col-12 equipment-section no-margin" onClick={{action "showSelectEquipment"}}>
+            <div class="col-5 title">{{t "createExerciseModalPage.equipment"}}</div>
+            <div class="col-7 selected">{{selectedEquipmentText}} {{md-icon "keyboard_arrow_right"}}</div>
+        </a>
+    {{/if}}
+  {{/modal-dialog}}
+{{/if}}

@@ -1,0 +1,11 @@
+<nav class="nav-center">
+    <div class="nav-wrapper">
+        <ul>
+            <li class={{if (eq page enums.pages.profile) "selected"}}>{{#link-to "profile"}}{{md-icon "person"}}{{/link-to}}</li>
+            <li class={{if (eq page enums.pages.history) "selected"}}>{{#link-to "history"}}{{md-icon "access_time"}}{{/link-to}}</li>
+            <li class={{if (eq page enums.pages.home) "selected"}}>{{#link-to "home"}}{{md-icon "add"}}{{/link-to}}</li>
+            <li class={{if (eq page enums.pages.exercises) "selected"}}>{{#link-to "exercises"}}{{md-icon "fitness_center"}}{{/link-to}}</li>
+            <li class={{if (eq page enums.pages.measurements) "selected"}}>{{#link-to "measurements"}}{{md-icon "poll"}}{{/link-to}}</li>
+        </ul>
+    </div>
+</nav>

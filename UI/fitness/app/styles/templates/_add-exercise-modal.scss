@@ -1,0 +1,78 @@
+.add-exercise-modal {
+    background-color: $background-color;
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    padding: 0;
+    width: 90%;
+
+    .top-row {
+        display: flex;
+        padding: 10px 10px 20px 10px;
+
+        .exit-button {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .new-button {
+            font-size: 16px;
+            font-weight: bold;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .add-exercises-section {
+            text-align: right;
+            padding-right: 5px !important;
+
+            .add-button {
+                font-size: 16px;
+                font-weight: bold;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .filter-row {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .exercise-list {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        overflow: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .exercise {
+            border-bottom: 1px solid $secondary-text-color;
+            color: $primary-text-color;
+            font-size: 16px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+            .name {
+                padding-bottom: 10px !important;
+                padding-top: 10px !important;
+            }
+
+            .is-selected {
+                i {
+                    color: $primary-accent-color;
+                    padding-top: 10px;
+                }
+            }
+
+            &:last-child {
+                border-bottom: unset;
+            }
+        }
+    }
+}

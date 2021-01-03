@@ -1,0 +1,30 @@
+<a class="item" {{action "openItemHistoryDetailModal"}}>
+    <div class="row no-margin name">
+        {{history.name}}
+    </div>
+
+    <div class="row no-margin logged-date">
+        {{loggedDate}}
+    </div>
+
+    <div class="row no-margin duration">
+        {{md-icon "access_time"}} {{duration}}
+    </div>
+
+    <div class="row no-margin exercises-title">
+        {{t "historyItem.exercises"}}
+    </div>
+
+    {{#each history.configuration.exercises as | exercise |}}
+        <div class="row no-margin exercise-item">
+            {{exercise.doneSets}} x {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+        </div>
+    {{/each}}
+</a>
+
+{{history-item-detail-modal
+    isModalVisible=isHistoryItemDetailModalVisible
+    log=selectedLog
+    loggedDate=loggedDate
+    duration=duration
+    onClose=(action "closeItemHistoryDetailModal")}}

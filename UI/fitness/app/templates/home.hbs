@@ -1,1 +1,49 @@
-{{outlet}}
+<div class="home">
+    <div class="page-data">
+        <div class="page-title">
+            {{t "homePage.title"}}
+        </div>
+
+        <div class="routines">
+            <div class="row">
+                <div class="col-6 routine-text">
+                    {{t "homePage.routines"}}
+                </div>
+                <div class="col-6 add-routine">
+                    {{#link-to "create-workout" class="ui-secondary-button add-button"}}{{md-icon "add"}}{{t "homePage.routine"}}{{/link-to}}
+                </div>
+            </div>
+        </div>
+
+        <div class="user-routines">
+            {{#each workoutRepository.workouts as | workout |}}
+                <a class="col-12 workout-item" {{action "openWorkout" workout}}>
+                    <div class="row no-margin name">
+                        {{workout.name}}
+                    </div>
+                    <div class="row no-margin exercises">
+                        {{#each workout.configuration.exercises as | exercise index |}}
+                            {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+
+                            {{#if (not (eq workout.configuration.exercises.length (add index 1)))}}
+                                {{md-icon "fiber_manual_record"}}
+                            {{/if}}
+                        {{/each}}
+                    </div>
+                </a>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="navbar-section">
+        {{navbar
+            page=enums.pages.home}}
+    </div>
+</div>
+
+{{workout-overview-modal
+    isModalVisible=isWorkoutOverviewModalVisible
+    workout=selectedWorkout
+    onTransitionToWorkoutInProgress=(action "transitionToWorkoutInProgress")
+    onEditWorkout=(action "editWorkout")
+    onClose=(action "closeWorkoutOverviewModal")}}

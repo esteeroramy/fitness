@@ -20,6 +20,7 @@ const createExercise = function(userId, exerciseObject, callback) {
             id: exerciseObject._id,
             name: exerciseObject.name,
             weight: exerciseObject.weight,
+            creatorId: exerciseObject.creatorId,
         };
 
         return callback(null, exerciseToRerturn);
@@ -27,14 +28,13 @@ const createExercise = function(userId, exerciseObject, callback) {
 }
 
 /**
- * Calls the db method and returns the minified list of exercises
- * created by the current user
- * 
- * @param {String} userId 
- * @param {Function} callback 
+ * Calls the db method and returns the list of exercises
+ *
+ * @param {String} userId
+ * @param {Function} callback
  */
-const queryCustomExercises = function(userId, callback) {
-    db.getExercisesByCreatorId(userId, (err, exercises) => {
+const getExercises = function(userId, callback) {
+    db.getExercises(userId, (err, exercises) => {
         if (err) {
             return callback(err, null);
         }
@@ -44,38 +44,15 @@ const queryCustomExercises = function(userId, callback) {
                 id: exercise._id,
                 name: exercise.name,
                 weight: exercise.weight,
+                creatorId: exercise.creatorId
             };
         });
 
-        return callback(null, exerciseToRerturn);   
-    });
-};
-
-/**
- * Calls the db method and returns the minified list of predefined exercises
- * 
- * @param {Function} callback 
- */
-const queryPredefinedExercises = function(callback) {
-    db.getPredefinedExercises((err, exercises) => {
-        if (err) {
-            return callback(err, null);
-        }
-
-        const exerciseToRerturn = exercises.map(exercise => {
-            return {
-                id: exercise._id,
-                name: exercise.name,
-                weight: exercise.weight,
-            };
-        });
-
-        return callback(null, exerciseToRerturn);   
+        return callback(null, exerciseToRerturn);
     });
 };
 
 // <exports> -----------------------------------
 exports.createExercise = createExercise;
-exports.queryCustomExercises = queryCustomExercises;
-exports.queryPredefinedExercises = queryPredefinedExercises;
+exports.getExercises = getExercises;
 // </exports> -----------------------------------

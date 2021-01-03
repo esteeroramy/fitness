@@ -1,0 +1,32 @@
+{{#if isModalVisible}}
+    {{#modal-dialog
+        onClose=(action "closeModal")
+        targetAttachment="center"
+        translucentOverlay=true
+        onClickOverlay=(action "closeModal")
+        overlayClass="overlay-style"
+        containerClass="workout-overview-modal"}}
+
+        <div class="row no-margin top-row">
+            <div class="col-2 no-padding">
+                <a class="ui-tertiary-button exit-button" onclick={{action onClose}}>X</a>
+            </div>
+            <div class="col-8 no-padding workout-name">
+                {{workout.name}}
+            </div>
+            <div class="col-2 no-padding edit-workout-section">
+                <a class="ui-secondary-button edit-button" onclick={{action "editWorkout"}}>{{t "workoutOverviewModal.edit"}}</a>
+            </div>
+        </div>
+        <div class="exercise-list">
+            {{#each workout.configuration.exercises as | exercise |}}
+                <div class="exercise">
+                    {{exercise.sets.length}} x {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+                </div>
+            {{/each}}
+        </div>
+        <div class="col-12 no-pading">
+            <a class="ui-primary-button start-workout-button" onclick={{action "startWorkout"}}>{{t "workoutOverviewModal.startWorkout"}}</a>
+        </div>
+    {{/modal-dialog}}
+{{/if}}

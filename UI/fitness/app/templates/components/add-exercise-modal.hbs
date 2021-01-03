@@ -1,0 +1,43 @@
+{{#if (and isModalVisible (not isCreateExerciseModalVisible))}}
+    {{#modal-dialog
+        onClose=(action "closeModal")
+        targetAttachment="center"
+        translucentOverlay=true
+        onClickOverlay=(action "closeModal")
+        overlayClass="overlay-style"
+        containerClass="add-exercise-modal"}}
+
+        <div class="row no-margin top-row">
+            <div class="col-8 no-padding">
+                <a class="ui-tertiary-button exit-button" onclick={{action onClose}}>X</a>
+                <a class="ui-secondary-button new-button" onclick={{action "openCreateExerciseModal"}}>{{t "addExerciseModalPage.new"}}</a>
+            </div>
+            <div class="col-4 no-padding add-exercises-section">
+                <a class="ui-secondary-button add-button {{unless isAddButtonEnabled "disabled"}}" onclick={{if isAddButtonEnabled (action "addExercises")}}>{{t "addExerciseModalPage.add"}}</a>
+            </div>
+        </div>
+        <div class="row no-margin filter-row">
+            {{input class="ui-primary-input" type="text" placeholder=(t "addExerciseModalPage.search") value=searchFilter}}
+        </div>
+        <div class="exercise-list">
+            {{#each exercisesToDisplay as | exercise |}}
+                <div class="row no-margin exercise" onclick={{action "toggleSelectExercise" exercise}}>
+                    <div class="col-10 no-padding name">
+                        {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+                    </div>
+                    <div class="col-2 is-selected">
+                        {{#if exercise.isSelected}}
+                            {{md-icon "check"}}
+                        {{/if}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
+    {{/modal-dialog}}
+{{/if}}
+
+{{create-exercise-modal
+    isModalVisible=isCreateExerciseModalVisible
+    onAddSavedExercise=(action "addSavedExercise")
+    onClose=(action "closeCreateExerciseModal")}}

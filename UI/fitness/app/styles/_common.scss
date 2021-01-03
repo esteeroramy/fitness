@@ -16,11 +16,149 @@
             border-bottom: 1px solid #FFFFFF !important;
             box-shadow: none !important;
         }
-    
+
         .prefix {
             .active {
                 color: #FFFFFF !important;
             }
         }
     }
+}
+
+.ui-primary-button {
+    background-color: $primary-accent-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $primary-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-text-color;
+        text-decoration: none;
+    }
+}
+
+.ui-secondary-button {
+    background-color: $secondary-accent-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $primary-accent-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &.disabled {
+        background-color: $disabled-background-color;
+        color: $disabled-text-color;
+    }
+
+    &:hover {
+        color: $primary-accent-color;
+        text-decoration: none;
+    }
+}
+
+.ui-tertiary-button {
+    background-color: $accent-background-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $primary-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-text-color;
+        text-decoration: none;
+    }
+}
+
+.ui-delete-button {
+    background-color: $delete-background-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $delete-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: $delete-text-color;
+        text-decoration: none;
+    }
+}
+
+.ui-check-button {
+    background-color: $accent-background-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $primary-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &.done {
+        background-color: $success-color;
+        color: $primary-text-color;
+    }
+
+    &:hover {
+        color: $primary-text-color;
+        text-decoration: none;
+    }
+}
+
+.ui-success-button {
+    background-color: $success-color;
+    border-radius: 9px;
+    box-sizing: border-box;
+    color: $primary-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-text-color;
+        text-decoration: none;
+    }
+}
+
+.ui-primary-input {
+    background-color: $accent-background-color !important;
+    border: 0px !important;
+    border-radius: 9px !important;
+    box-sizing: border-box !important;
+    color: $primary-text-color !important;
+    font-size: 16px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+
+    &:focus {
+        border: 2px solid $primary-text-color !important;
+        box-shadow: unset !important;
+    }
+}
+
+.overlay-style {
+    background-color: rgba(0,0,0,0.5) !important;
 }
