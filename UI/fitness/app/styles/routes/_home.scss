@@ -3,6 +3,12 @@
     height: 100%;
 
     .page-data {
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
         display: flex;
         flex-direction: column;
         height: calc(100% - 56px);
@@ -54,6 +60,7 @@
             font-size: 16px;
             padding: 10px;
             margin-bottom: 10px;
+            text-decoration: unset;
 
             .name {
                 color: $primary-text-color;

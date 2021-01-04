@@ -193,6 +193,26 @@ const deleteHistories = (req, res) => {
     });
 };
 
+/**
+ * Delete a workout object
+ *
+ * @param {Object} req
+ * @param {Object} res
+ */
+const deleteWorkout = (req, res) => {
+    const workoutId = req.params.id;
+
+    common.verifyToken (req, res, (req, res) => {
+        workouts.deleteWorkout(workoutId, (err, _) => {
+            if (err) {
+                return res.status(common.getStatus(err)).send(err);
+            }
+
+            return res.status(200).send({});
+        })
+    });
+};
+
 // <exports> ------------------------------------------------
 exports.createWorkout = createWorkout;
 exports.editWorkout = editWorkout;
@@ -201,4 +221,5 @@ exports.logWorkout = logWorkout;
 exports.getLatestWorkoutslog = getLatestWorkoutslog;
 exports.getHistories = getHistories;
 exports.deleteHistories = deleteHistories;
+exports.deleteWorkout = deleteWorkout;
 // </exports> ------------------------------------------------

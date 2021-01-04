@@ -74,7 +74,7 @@ export default Service.extend({
         const log = this.get('store').peekRecord('history', logId);
         const index = histories.findIndex(item => item.id === logId);
 
-        log.destroyRecord();
+        yield log.destroyRecord();
 
         this.set('histories', histories.slice(0, index).concat(histories.slice(index + 1, histories.length)));
     }),

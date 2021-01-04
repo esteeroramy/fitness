@@ -8,6 +8,12 @@
         background-color: $background-color;
 
         ul {
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
             display: flex;
             padding-left: 10px;
             padding-right: 10px;

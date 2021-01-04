@@ -1,13 +1,29 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 200 version
+*/
+
 .add-exercise-modal {
     background-color: $background-color;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+       -moz-box-orient: vertical;
+       -moz-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     height: 90%;
     padding: 0;
     width: 90%;
 
     .top-row {
-        display: flex;
         padding: 10px 10px 20px 10px;
 
         .exit-button {
@@ -39,15 +55,14 @@
     }
 
     .filter-row {
+        margin-top: 15px;
         padding-left: 10px;
         padding-right: 10px;
     }
 
     .exercise-list {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
         overflow: auto;
+        margin-top: 40px;
         padding-left: 10px;
         padding-right: 10px;
 

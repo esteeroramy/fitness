@@ -10,7 +10,7 @@ export default Controller.extend({
     workoutRepository: service(),
 
     /**
-     * If this is in editing state
+     * The id of the edited workout
      *
      * @type {Boolean}
      */
@@ -87,7 +87,7 @@ export default Controller.extend({
             name: this.get('workoutName'),
             type: this.get('enums.workoutTypes.weights'),
             configuration: {
-                exercises: this.get('exercises').map(exercise => {
+                exercises: (this.get('exercises') || []).map(exercise => {
                     return {
                         id: exercise.id,
                         sets: get(exercise, 'sets').map(set => {
@@ -118,11 +118,23 @@ export default Controller.extend({
         }
     }),
 
+    deleteWorkout: task(function* () {
+        // try {
+            yield this.get('workoutRepository.deleteWorkout').perform(this.get('id'));
+
+            this.send('exit');
+        // } catch {
+
+        // }
+    }),
+
     reset() {
         this.setProperties({
             exercises: null,
             isAddExerciseModalVisible: false,
-            workoutName: ''
+            workoutName: '',
+            id: null,
+            isEditing: false
         });
     },
 
@@ -164,6 +176,15 @@ export default Controller.extend({
 
         saveWorkout() {
             this.get('saveWorkout').perform();
+        },
+
+        deleteWorkout() {
+            this.get('deleteWorkout').perform();
+        },
+
+        exit() {
+            this.reset();
+            this.transitionToRoute('home');
         }
     }
 });

@@ -54,6 +54,7 @@ const getWorkouts = function(userId, callback) {
         const workoutsToReturn = workouts.map(workout => {
             return {
                 id: workout._id,
+                isDeleted: workout.isDeleted,
                 name: workout.name,
                 type: workout.type,
                 creatorId: workout.creatorId,
@@ -165,6 +166,22 @@ const deleteHistories = function(logId, callback) {
     });
 };
 
+/**
+ * Calls the db method to delete the workout
+ *
+ * @param {String} workoutId
+ * @param {Function} callback
+ */
+const deleteWorkout = function(workoutId, callback) {
+    db.deleteWorkout(workoutId, (err, _) => {
+        if (err) {
+            return callback(err, null);
+        }
+
+        return callback(null, {});
+    });
+};
+
 // <exports> -----------------------------------
 exports.createWorkout = createWorkout;
 exports.editWorkout = editWorkout;
@@ -173,4 +190,5 @@ exports.logWorkout = logWorkout;
 exports.getLatestWorkoutslog = getLatestWorkoutslog;
 exports.getHistories = getHistories;
 exports.deleteHistories = deleteHistories;
+exports.deleteWorkout = deleteWorkout;
 // </exports> -----------------------------------

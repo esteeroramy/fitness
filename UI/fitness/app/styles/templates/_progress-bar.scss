@@ -1,0 +1,31 @@
+.progress-bar-component {
+    height: 30px;
+    width: 90px;
+
+    .outline {
+        background-color: $accent-background-color;
+        border-radius: 5px;
+        box-sizing: border-box;
+        height: 100%;
+
+        .inside {
+            background-color: $primary-accent-color;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 100%;
+
+            &.timer-green {
+                background-color: $success-color;
+            }
+        }
+
+        .progress-bar-text {
+            color: $primary-text-color;
+            font-size: 16px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}

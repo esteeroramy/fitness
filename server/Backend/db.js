@@ -205,6 +205,7 @@ exports.updateById = db_users.updateById;
 exports.createWorkout = db_workouts.createWorkout;
 exports.editWorkout = db_workouts.editWorkout;
 exports.getWorkouts = db_workouts.getWorkouts;
+exports.deleteWorkout = db_workouts.deleteWorkout;
 // </Workouts Collection> -------------------------------------------------
 
 // <Workoutlog Collection> -------------------------------------------------

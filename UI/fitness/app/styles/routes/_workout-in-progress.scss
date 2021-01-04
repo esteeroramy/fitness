@@ -1,44 +1,17 @@
 .workout-in-progress {
     background-color: $background-color;
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
     display: flex;
     flex-direction: column;
     height: 100%;
 
     .header-data {
         padding: 10px 20px 0px 20px;
-
-        .rest-timer {
-            background-color: $accent-background-color;
-            border-radius: 5px;
-            box-sizing: border-box;
-            color: $primary-text-color;
-            font-size: 16px;
-            height: 30px;
-            margin: 0;
-            width: 90px;
-
-            .progress-bar {
-                -webkit-transition: none;
-                -moz-transition: none;
-                -ms-transition: none;
-                -o-transition: none;
-                background-color: $primary-accent-color;
-                transition: none;
-            }
-
-            .progress-bar-text {
-                left: 50%;
-                position: absolute;
-                top: 50%;
-                transform: translate(-50%, -50%);
-            }
-
-            &.rest-timer-green {
-                .progress-bar {
-                    background-color: $success-color;
-                }
-            }
-        }
 
         .timer {
             color: $secondary-text-color;

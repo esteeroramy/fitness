@@ -1,4 +1,10 @@
 .history-item-detail-modal {
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
     background-color: $background-color;
     display: flex;
     flex-direction: column;
@@ -60,6 +66,7 @@
     }
 
     .exercise-list {
+        overflow: auto;
         padding-left: 15px;
         padding-right: 15px;
 
