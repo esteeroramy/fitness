@@ -17,20 +17,22 @@
 
         <div class="user-routines">
             {{#each workoutRepository.workouts as | workout |}}
-                <a class="col-12 workout-item" {{action "openWorkout" workout}}>
-                    <div class="row no-margin name">
-                        {{workout.name}}
-                    </div>
-                    <div class="row no-margin exercises">
-                        {{#each workout.configuration.exercises as | exercise index |}}
-                            {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+                {{#if (not workout.isDeleted)}}
+                    <a class="col-12 workout-item" {{action "openWorkout" workout}}>
+                        <div class="row no-margin name">
+                            {{workout.name}}
+                        </div>
+                        <div class="row no-margin exercises">
+                            {{#each workout.configuration.exercises as | exercise index |}}
+                                {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
 
-                            {{#if (not (eq workout.configuration.exercises.length (add index 1)))}}
-                                {{md-icon "fiber_manual_record"}}
-                            {{/if}}
-                        {{/each}}
-                    </div>
-                </a>
+                                {{#if (not (eq workout.configuration.exercises.length (add index 1)))}}
+                                    {{md-icon "fiber_manual_record"}}
+                                {{/if}}
+                            {{/each}}
+                        </div>
+                    </a>
+                {{/if}}
             {{/each}}
         </div>
     </div>

@@ -3,11 +3,10 @@
         <div class="row">
             <div class="col-4">
                 {{#if workoutInProgressRepository.restTimeEnabled}}
-                    <div class="progress rest-timer {{if workoutInProgressRepository.isRestTimeGreen "rest-timer-green"}}">
-                        <div class="progress-bar" role="progressbar" aria-valuenow={{workoutInProgressRepository.restPercentageLeft}} aria-valuemin="0" aria-valuemax="100" style="width:{{workoutInProgressRepository.restPercentageLeft}}%">
-                            <span class="progress-bar-text">{{workoutInProgressRepository.restTimeLeft}}</span>
-                        </div>
-                    </div>
+                    {{progress-bar
+                        progress=workoutInProgressRepository.restPercentageLeft
+                        time=workoutInProgressRepository.restTimeLeft
+                        isGreen=workoutInProgressRepository.isRestTimeGreen}}
                 {{/if}}
             </div>
             <div class="col-4 timer">

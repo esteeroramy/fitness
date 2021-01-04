@@ -24,4 +24,5 @@ exports.handleWorkoutsEditPath = workouts_api.editWorkout;
 exports.handleWorkoutsGetPath = workouts_api.getWorkouts;
 exports.handleWorkoutsLogPath = workouts_api.logWorkout;
 exports.handleLatestWorkoutslogsGetPath = workouts_api.getLatestWorkoutslog;
+exports.handleWorkoutsDeletePath = workouts_api.deleteWorkout;
 // </Workouts Requests> ------------------------------------------------

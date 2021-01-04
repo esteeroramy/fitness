@@ -118,7 +118,7 @@ export default Service.extend({
             } else {
                 const minRestDuration = this.get('minRestDuration');
                 let isRestTimeGreen = false;
-                if (remainingTime < minRestDuration) {
+                if (remainingTime < (restDuration - minRestDuration)) {
                     isRestTimeGreen = true;
                 }
 
@@ -160,6 +160,8 @@ export default Service.extend({
         if (hours === 0) {
             return minutes + ":" + seconds;
         }
+
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
 
         return hours + ":" + minutes + ":" + seconds;
     }

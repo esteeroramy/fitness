@@ -21,40 +21,10 @@ export default Service.extend({
      * Creates a workout
      */
     createWorkout: task(function* (workout) {
-        const enums = this.get('enums');
         const data = yield this.get('store').createRecord('workout', workout);
-        const savedData = yield data.save();
-        const exercises = this.get('exerciseRepository.exercises');
+        yield data.save();
 
-        const transformedData = {
-            id: get(savedData, 'id'),
-            creatorId: get(savedData, 'creatorId'),
-            name: get(savedData, 'name'),
-            workoutTypeKey: enums.getKeyByValue(enums.workoutTypes, savedData.type),
-            configuration: get(savedData, 'configuration')
-        };
-
-        get(transformedData, 'configuration.exercises').forEach(exercise => {
-            const exerciseDetails = exercises.find(item => get(item, 'id') === get(exercise, 'id'));
-
-            setProperties(exercise, {
-                creatorId: get(exerciseDetails, 'creatorId'),
-                name: get(exerciseDetails, 'name'),
-                weight: get(exerciseDetails, 'weight'),
-                equipmentKey: enums.getKeyByValue(enums.exerciseEquipment, exerciseDetails.weight)
-            });
-
-            (get(exercise, 'sets') || []).forEach(exerciseSet => {
-                setProperties(exerciseSet, {
-                    minRest: this.fromSecs(get(exerciseSet, 'minRestSecs')),
-                    maxRest: this.fromSecs(get(exerciseSet, 'maxRestSecs'))
-                });
-            });
-        });
-
-        this.set('workouts', this.get('workouts').concat(transformedData));
-
-        return transformedData;
+        yield this.get('getWorkouts').perform();
     }),
 
     /**
@@ -72,42 +42,17 @@ export default Service.extend({
             };
         }));
 
-        const savedData = yield workout.save();
-        const exercises = this.get('exerciseRepository.exercises');
+        yield workout.save();
 
-        const transformedData = {
-            id: get(savedData, 'id'),
-            creatorId: get(savedData, 'creatorId'),
-            name: get(savedData, 'name'),
-            workoutTypeKey: enums.getKeyByValue(enums.workoutTypes, savedData.type),
-            configuration: get(savedData, 'configuration')
-        };
+        yield this.get('getWorkouts').perform();
+    }),
 
-        get(transformedData, 'configuration.exercises').forEach(exercise => {
-            const exerciseDetails = exercises.find(item => get(item, 'id') === get(exercise, 'id'));
+    deleteWorkout: task(function* (workoutId) {
+        const workout = this.get('store').peekRecord('workout', workoutId);
 
-            setProperties(exercise, {
-                creatorId: get(exerciseDetails, 'creatorId'),
-                name: get(exerciseDetails, 'name'),
-                weight: get(exerciseDetails, 'weight'),
-                equipmentKey: enums.getKeyByValue(enums.exerciseEquipment, exerciseDetails.weight)
-            });
+        yield workout.destroyRecord();
 
-            (get(exercise, 'sets') || []).forEach(exerciseSet => {
-                setProperties(exerciseSet, {
-                    minRest: this.fromSecs(get(exerciseSet, 'minRestSecs')),
-                    maxRest: this.fromSecs(get(exerciseSet, 'maxRestSecs'))
-                });
-            });
-        });
-
-        const index = this.get('workouts').findIndex(item => item.id === transformedData.id)
-
-        if (index !== -1) {
-            this.get('workouts')[index] = transformedData;
-        }
-
-        return transformedData;
+        yield this.get('getWorkouts').perform();
     }),
 
     /**
@@ -121,6 +66,7 @@ export default Service.extend({
         const transformedData = (data || []).map(workout => {
             return {
                 id: get(workout, 'id'),
+                isDeleted: get(workout, 'isDeleted'),
                 creatorId: get(workout, 'creatorId'),
                 name: get(workout, 'name'),
                 workoutTypeKey: enums.getKeyByValue(enums.workoutTypes, workout.type),

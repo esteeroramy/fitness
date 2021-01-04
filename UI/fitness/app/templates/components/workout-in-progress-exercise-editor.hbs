@@ -28,10 +28,10 @@
                 {{set.previous}}
             </div>
             <div class="col-2 no-padding text-align-center">
-                {{input class="ui-primary-input" type="text" value=set.weight}}
+                {{input class="ui-primary-input input-field" type="text" value=set.weight}}
             </div>
             <div class="col-2 no-padding text-align-center">
-                {{input class="ui-primary-input" type="text" placeholder=set.repsPlaceholder value=set.reps}}
+                {{input class="ui-primary-input input-field" type="text" placeholder=set.repsPlaceholder value=set.reps}}
             </div>
             <div class="col-2 no-padding text-align-center">
                 <a class="ui-check-button check-set {{if set.done "done"}}" onClick={{action "toggleSet" set}}>{{md-icon "check"}}</a>

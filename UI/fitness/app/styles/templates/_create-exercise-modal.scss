@@ -52,17 +52,35 @@
     }
 
     .selecting-equipment {
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
         display: flex;
         flex-direction: column;
         height: 100%;
         min-height: 100%;
 
         .title-section {
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
             display: flex;
             padding-bottom: 20px;
         }
 
         .equipment-list {
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
             display: flex;
             flex: 1;
 		    flex-direction: column;

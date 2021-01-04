@@ -2,7 +2,7 @@
     <div class="header-data">
         <div class="row">
             <div class="col-3">
-                {{#link-to "home" class="ui-tertiary-button exit-button"}}X{{/link-to}}
+                <a class="ui-tertiary-button exit-button" {{action "exit"}}>X</a>
             </div>
             <div class="col-6 title">
                 {{#if isEditing}}
@@ -29,6 +29,10 @@
             {{/each}}
         </div>
         <a class="ui-secondary-button add-exercise" {{action "openAddExerciseModal"}}>{{t "createWorkoutPage.addExercise"}}</a>
+
+        {{#if isEditing}}
+            <a class="ui-delete-button delete-workout" {{action "deleteWorkout"}}>{{t "createWorkoutPage.deleteWorkout"}}</a>
+        {{/if}}
     </div>
 </div>
 

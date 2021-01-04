@@ -1,4 +1,10 @@
 .create-workout {
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
     background-color: $background-color;
     display: flex;
     flex-direction: column;
@@ -42,6 +48,13 @@
         .add-exercise {
             display: inline-block;
             font-size: 20px;
+            width: 100%;
+        }
+
+        .delete-workout {
+            display: inline-block;
+            font-size: 20px;
+            margin-top: 15px;
             width: 100%;
         }
     }

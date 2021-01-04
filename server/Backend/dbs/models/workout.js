@@ -10,6 +10,7 @@ let workoutSchema = mongoose.Schema({
     configuration: mongoose.Mixed,
     creatorId: String,
     name: String,
+    isDeleted: Boolean,
     type: {
         type: String,
         enum: workoutTypes

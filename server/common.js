@@ -42,6 +42,7 @@ const errors = Object.freeze({
     4002: 'failed to query workouts, database issue',
     4003: 'failed to find workout, database issue',
     4004: 'failed to update workout, database issue',
+    4005: 'failed to delete workout, database issue',
 
     // workoutlogs
     5000: 'failed to save workoutlog, database issue',

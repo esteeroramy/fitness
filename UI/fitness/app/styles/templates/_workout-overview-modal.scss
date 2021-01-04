@@ -1,4 +1,10 @@
 .workout-overview-modal {
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
     background-color: $background-color;
     display: flex;
     flex-direction: column;
@@ -7,6 +13,12 @@
     width: 90%;
 
     .top-row {
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
         display: flex;
         padding: 10px 10px 20px 10px;
 

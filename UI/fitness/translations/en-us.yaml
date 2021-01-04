@@ -19,6 +19,7 @@ createWorkoutExerciseEditor:
     set: 'Set'
 createWorkoutPage:
     addExercise: 'Add Exercise'
+    deleteWorkout: 'Delete Workout'
     editingTitle: 'Edit Routine'
     finish: 'Finish'
     save: 'Save'

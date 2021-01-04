@@ -17,6 +17,7 @@ const createWorkout = function(userId, workoutObject, callback) {
     newWorkout.name = workoutObject.name;
     newWorkout.type = workoutObject.type;
     newWorkout.configuration = workoutObject.configuration;
+    newWorkout.isDeleted = false;
 
     newWorkout.save(function(err) {
         if (err) {
@@ -70,8 +71,33 @@ const getWorkouts = function(creatorId, callback) {
     });
 };
 
+/**
+ * Delete the workout
+ *
+ * @param {String} workoutId
+ * @param {Function} callback
+ */
+const deleteWorkout = function(workoutId, callback) {
+    workout.findOne({ _id: workoutId }, function(err, foundWorkout) {
+        if (err) {
+            return callback(common.getError(4002), null);
+        }
+
+        foundWorkout.isDeleted = true;
+
+        foundWorkout.save(function(err) {
+            if (err) {
+                return callback(common.getError(4005), null);
+            }
+
+            return callback(null, foundWorkout);
+        });
+    });
+};
+
 // <exports> -----------------------------------
 exports.createWorkout = createWorkout;
 exports.editWorkout = editWorkout;
 exports.getWorkouts = getWorkouts;
+exports.deleteWorkout = deleteWorkout;
 // </exports> -----------------------------------
