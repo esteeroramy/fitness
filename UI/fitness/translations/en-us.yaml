@@ -80,6 +80,7 @@ historyItem:
     exercises: 'Exercises'
 historyItemDetailModal:
     delete: 'Delete'
+    notes: 'Notes:'
 historyPage:
     title: 'History'
 homePage:
@@ -115,7 +116,9 @@ weightUnits:
     lb: 'Lb'
     lbs: 'Lbs'
 workoutInProgressExerciseEditor:
+    notes: 'Notes...'
     previous: 'Previous'
+    previousNotes: 'Previous Notes:'
     reps: 'Reps'
     set: 'Set'
 workoutInProgressPage:

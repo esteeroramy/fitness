@@ -36,6 +36,10 @@ export default Service.extend({
                 id: get(exercise, 'id'),
                 name: get(exercise, 'name'),
                 equipmentKey: get(exercise, 'equipmentKey'),
+                oldNotes: isPresent(previousExercise) ?
+                    (get(previousExercise, 'notes') || '') :
+                    '',
+                notes: '',
                 sets: (get(exercise, 'sets') || []).map((set, index) => {
                     const previousSet = isPresent(previousExercise) ?
                         (get(previousExercise, 'sets') || [])[index] :

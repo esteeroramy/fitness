@@ -1,7 +1,27 @@
 <div>
     <div class="row no-padding title-row">
-        <div class="col-12 name">{{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})</div>
+        <div class="col-10 name">{{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})</div>
+        <div class="col-2 add-comment-section">
+            {{#unless isNotesVisible}}
+                <a class="ui-secondary-button add-comment" onClick={{action "addComment"}}>{{md-icon "comment"}}</a>
+            {{/unless}}
+        </div>
     </div>
+    {{#if exercise.oldNotes}}
+        <div class="row no-margin previous-notes">
+            {{t "workoutInProgressExerciseEditor.previousNotes"}} {{exercise.oldNotes}}
+        </div>
+    {{/if}}
+    {{#if isNotesVisible}}
+        <div class="row no-margin comment-row">
+            <div class="col-10 no-padding">
+                {{textarea class="ui-primary-input" placeholder=(t "workoutInProgressExerciseEditor.notes") value=exercise.notes}}
+            </div>
+            <div class="col-2 no-padding delete-comment-section">
+                <a class="ui-tertiary-button delete-comment" onClick={{action "deleteComment"}}>X</a>
+            </div>
+        </div>
+    {{/if}}
     <div class="row no-padding set-headers">
         <div class="col-2 no-padding text-align-center">
             <span>{{t "workoutInProgressExerciseEditor.set"}}</span>

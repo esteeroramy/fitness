@@ -9,13 +9,34 @@
             font-size: 16px;
         }
 
-        .delete-exercise-section {
+        .add-comment-section {
+            text-align: right;
+            padding-right: 13px;
+
+            .add-comment {
+                padding: 4px 6px;
+
+                i {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    .previous-notes {
+        color: $primary-text-color;
+        font-size: 15px;
+        padding-bottom: 5px;
+    }
+
+    .comment-row {
+        padding-bottom: 10px;
+
+        .delete-comment-section {
             text-align: right;
 
-            .delete-exercise {
-                font-size: 16px;
-                padding: 2px 12px;
-                font-weight: bold;
+            .delete-comment {
+                padding: 2px 10px;
             }
         }
     }
