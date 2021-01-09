@@ -90,6 +90,9 @@ loginPage:
     login: 'Login'
     register: 'Don''t have an account? Register'
 measurementsPage:
+    notes: 'Notes...'
+    notesDisplay: 'Notes:'
+    submit: 'Submit'
     title: 'Measurements'
 profilePage:
     title: 'Profile'

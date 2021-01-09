@@ -11,6 +11,9 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
+
 app.use(bodyParsesr.urlencoded({
     extended: false
 }));
@@ -35,16 +38,18 @@ app.listen(config.port, () => {
 app.get('/api/exercises', common.setVerificationToken, api.handleExercisesGetPath);
 app.get('/api/histories', common.setVerificationToken, api.handleHistoriesGetPath);
 app.get('/api/me', common.setVerificationToken, api.handleGetMePath);
+app.get('/api/progressPhotos', common.setVerificationToken, api.handleGetProgressPhotosPath);
 app.get('/api/workoutlogs/:id', common.setVerificationToken, api.handleLatestWorkoutslogsGetPath);
 app.get('/api/workouts', common.setVerificationToken, api.handleWorkoutsGetPath);
 // app.get('/api/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
 // </Get Requests> -----------------------------------------------
 
 // <Post Requests> -----------------------------------------------
-app.post('/api/login', api.handleLoginPath);
-app.post('/api/workoutlogs', common.setVerificationToken, api.handleWorkoutsLogPath);
-app.post('/api/users/create', api.handleUsersCreatePath);
 app.post('/api/exercises', common.setVerificationToken, api.handleExercisesCreatePath);
+app.post('/api/login', api.handleLoginPath);
+app.post('/api/users/create', api.handleUsersCreatePath);
+app.post('/api/workoutlogs', common.setVerificationToken, api.handleWorkoutsLogPath);
+app.post('/api/progressphotos', common.setVerificationToken, api.handleCreateProgressPhotosPath);
 app.post('/api/workouts', common.setVerificationToken, api.handleWorkoutsCreatePath);
 // </Post Requests> -----------------------------------------------
 

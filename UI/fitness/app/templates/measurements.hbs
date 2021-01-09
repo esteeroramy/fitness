@@ -1,6 +1,51 @@
 <div class="measurements">
-    <div class="page-title">
-        {{t "measurementsPage.title"}}
+    <div class="page-data">
+        <div class="page-title">
+            <div class="row no-margin">
+                <div class="col-10 no-padding">
+                    {{t "measurementsPage.title"}}
+                </div>
+                <div class="col-2 no-padding top-button-section">
+                    {{#if isAddingPicture}}
+                        <a class="ui-tertiary-button close-add-picture-button" {{action "closeAddPictureSection"}}>X</a>
+                    {{else}}
+                        <a class="ui-secondary-button add-picture-button" {{action "openAddPictureSection"}}>{{md-icon "add_a_photo"}}</a>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+
+        {{#if isAddingPicture}}
+            <form class="form-style" onsubmit={{action "createUser"}} enctype="multipart/form-data">
+                <label class="custom-file-upload ui-secondary-button">
+                    <input type="file" accept="image/*" capture="camera" onchange={{action "uploadFile"}}/>
+                    {{md-icon "add_a_photo"}}
+                </label>
+                <img class="selected-image" src={{image}}/>
+
+                <div class="notes-section">
+                    {{textarea class="ui-primary-input notes-field" placeholder=(t "measurementsPage.notes") value=notes}}
+                </div>
+
+                {{#if image}}
+                    <div class="row no-margin submit-button-section">
+                        <button type="submit" class="ui-primary-button submit-button">{{t "measurementsPage.submit"}}</button>
+                    </div>
+                {{/if}}
+            </form>
+        {{else}}
+            <div class="photo-section">
+                {{#each allPhotos as | item index |}}
+                    <div class="row no-margin photo-date">
+                        {{item.title}}
+                    </div>
+                    <img class="image-display" src={{item.src}}/>
+                    <div class="row no-margin notes-section">
+                        {{t "measurementsPage.notesDisplay"}} {{item.notes}}
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
     </div>
 
     <div class="navbar-section">

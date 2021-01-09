@@ -67,20 +67,8 @@
             }
 
             .exercises {
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
                 color: $secondary-text-color;
-                display: -webkit-box;
-                font-size: 14px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-
-                i {
-                    font-size: 10px;
-                    padding-top: 7px;
-                    padding-left: 5px;
-                    padding-right: 5px;
-                }
+                font-size: 12px;
             }
         }
     }
