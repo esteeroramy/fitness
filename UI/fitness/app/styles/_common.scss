@@ -27,6 +27,7 @@
 
 .ui-primary-button {
     background-color: $primary-accent-color;
+    border: 0px;
     border-radius: 9px;
     box-sizing: border-box;
     color: $primary-text-color;
@@ -40,6 +41,12 @@
     &:hover {
         color: $primary-text-color;
         text-decoration: none;
+    }
+
+    &:focus {
+        outline: none;
+        background-color: $primary-accent-color;
+        color: $primary-text-color;
     }
 }
 

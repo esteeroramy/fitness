@@ -1,5 +1,6 @@
-const users_api = require('./api-components/users-api.js');
+const progress_photos_api = require('./api-components/progress-photos-api.js');
 const exercises_api = require('./api-components/exercises-api.js');
+const users_api = require('./api-components/users-api.js');
 const workouts_api = require('./api-components/workouts-api.js');
 
 // <Exercises Requests> ------------------------------------------------
@@ -26,3 +27,8 @@ exports.handleWorkoutsLogPath = workouts_api.logWorkout;
 exports.handleLatestWorkoutslogsGetPath = workouts_api.getLatestWorkoutslog;
 exports.handleWorkoutsDeletePath = workouts_api.deleteWorkout;
 // </Workouts Requests> ------------------------------------------------
+
+// <Progress Photos Requests> ------------------------------------------------
+exports.handleCreateProgressPhotosPath = progress_photos_api.createProgressPhoto;
+exports.handleGetProgressPhotosPath = progress_photos_api.getProgressPhotos;
+// </Progress Photos Requests> ------------------------------------------------

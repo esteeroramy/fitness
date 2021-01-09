@@ -12,6 +12,7 @@ const config = require('./config.js');
  * 3000 -> exercises
  * 4000 -> workouts
  * 5000 -> workoutlogs
+ * 6000 -> progress photos
  */
 const errors = Object.freeze({
     // system
@@ -47,7 +48,11 @@ const errors = Object.freeze({
     // workoutlogs
     5000: 'failed to save workoutlog, database issue',
     5001: 'failed to get workoutlog, database issue',
-    5002: 'failed to delete workoutlog, database issue'
+    5002: 'failed to delete workoutlog, database issue',
+
+    // progress photos
+    6000: 'failed to save progress photos, database issue',
+    6001: 'failed to get progress photos, database issue'
 });
 exports.errors = errors;
 

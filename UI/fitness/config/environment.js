@@ -2,8 +2,8 @@
 
 module.exports = function(environment) {
   let ENV = {
-    // apiUrl: 'http://localhost:4000/api',
-    apiUrl: 'http://fitness.fezplanet.com/api',
+    apiUrl: 'http://localhost:4000/api',
+    // apiUrl: 'http://fitness.fezplanet.com/api',
     modulePrefix: 'fitness',
     environment,
     rootURL: '/',

@@ -6,6 +6,7 @@ const db_exercises = require('./dbs/db-exercises.js');
 const db_users = require('./dbs/db-users.js');
 const db_workouts = require('./dbs/db-workouts.js');
 const db_workoutlogs = require('./dbs/db-workoutlogs.js');
+const db_progress_photos = require('./dbs/db-progress-photos.js');
 
 const exercise = require('./dbs/models/exercise');
 
@@ -213,4 +214,9 @@ exports.logWorkout = db_workoutlogs.logWorkout;
 exports.getLatestWorkoutslog = db_workoutlogs.getLatestWorkoutslog;
 exports.getHistories = db_workoutlogs.getHistories;
 exports.deleteHistories = db_workoutlogs.deleteHistories;
+// </Workoutlog Collection> -------------------------------------------------
+
+// <Workoutlog Collection> -------------------------------------------------
+exports.createProgressPhoto = db_progress_photos.createProgressPhoto;
+exports.getProgressPhotos = db_progress_photos.getProgressPhotos;
 // </Workoutlog Collection> -------------------------------------------------

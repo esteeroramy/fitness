@@ -25,10 +25,6 @@
                         <div class="row no-margin exercises">
                             {{#each workout.configuration.exercises as | exercise index |}}
                                 {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
-
-                                {{#if (not (eq workout.configuration.exercises.length (add index 1)))}}
-                                    {{md-icon "fiber_manual_record"}}
-                                {{/if}}
                             {{/each}}
                         </div>
                     </a>
