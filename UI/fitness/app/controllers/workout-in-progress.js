@@ -43,6 +43,7 @@ export default Controller.extend({
                     exercises: exerciseProgress.map(exercise => {
                         return {
                             id: get(exercise, 'id'),
+                            notes: get(exercise, 'notes'),
                             sets: get(exercise, 'sets').map(workSet => {
                                 return {
                                     weight: get(workSet, 'weight'),

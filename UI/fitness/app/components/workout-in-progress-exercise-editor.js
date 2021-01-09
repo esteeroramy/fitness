@@ -11,6 +11,13 @@ export default Component.extend({
      */
     exercise: null,
 
+    /**
+     * If the notes section is visible
+     *
+     * @type {Boolean}
+     */
+    isNotesVisible: false,
+
     actions: {
         toggleSet(workoutSet) {
             const isDone = !get(workoutSet, 'done');
@@ -23,6 +30,17 @@ export default Component.extend({
                     this.onStartRestTimer(get(workoutSet, 'minRestSecs'));
                 }
             }
+        },
+
+        addComment() {
+            this.set('isNotesVisible', true);
+        },
+
+        deleteComment() {
+            this.setProperties({
+                isNotesVisible: false,
+                'exercise.notes': ''
+            });
         }
     }
 });

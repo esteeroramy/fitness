@@ -32,6 +32,11 @@
                 <div class="row no-margin exercise-name">
                     {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
                 </div>
+                {{#if exercise.notes}}
+                    <div class="row no-margin exercise-notes">
+                        {{t "historyItemDetailModal.notes"}} {{exercise.notes}}
+                    </div>
+                {{/if}}
                 {{#each exercise.sets as | exerciseSet index |}}
                     <div class="row no-margin set-row">
                         <div class="col-1 no-padding">
