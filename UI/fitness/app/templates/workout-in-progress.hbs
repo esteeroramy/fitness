@@ -9,10 +9,31 @@
                         isGreen=workoutInProgressRepository.isRestTimeGreen}}
                 {{/if}}
             </div>
-            <div class="col-4 timer">
+            <div class="col-4 no-padding timer">
                 {{workoutInProgressRepository.workoutElapsedTime}}
             </div>
-            <div class="col-4 text-align-right">
+            {{#if workoutInProgressRepository.saveInProgressWorkout.isRunning}}
+                <div class="col-1 no-padding status-section">
+                    {{!-- nothing --}}
+                </div>
+            {{else if workoutInProgressRepository.saveInProgressWorkoutRequest.isRunning}}
+                <div class="col-1 no-padding status-section">
+                    {{partial "loading-spinner"}}
+                </div>
+            {{else if workoutInProgressRepository.saveInProgressWorkoutRequest.last.isSuccessful}}
+                <div class="col-1 no-padding status-section">
+                    {{md-icon "save"}}
+                </div>
+            {{else if workoutInProgressRepository.saveInProgressWorkoutRequest.last.isError}}
+                <div class="col-1 no-padding status-section error">
+                    {{md-icon "error"}}
+                </div>
+            {{else}}
+                <div class="col-1 no-padding status-section">
+                    {{md-icon "save"}}
+                </div>
+            {{/if}}
+            <div class="col-3 text-align-right save-workout-section">
                 <a class="ui-success-button save-workout" {{action "saveWorkout"}}>{{t "createWorkoutPage.finish"}}</a>
             </div>
         </div>
@@ -23,7 +44,9 @@
             {{#each workoutInProgressRepository.exerciseProgress as | exercise |}}
                 {{workout-in-progress-exercise-editor
                     exercise=exercise
-                    onStartRestTimer=(action "startRestTimer")}}
+                    isNotesVisible=exercise.isNotesVisible
+                    onStartRestTimer=(action "startRestTimer")
+                    onFieldChanged=(action "fieldChanged")}}
             {{/each}}
         </div>
         <a class="ui-delete-button cancel-workout" {{action "cancelWorkout"}}>{{t "workoutInProgressPage.cancelWorkout"}}</a>

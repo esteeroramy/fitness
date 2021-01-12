@@ -8,7 +8,9 @@ export default Service.extend({
     enums: service(),
     exerciseRepository: service(),
     historyRepository: service(),
+    meRepository: service(),
     store: service(),
+    workoutInProgressRepository: service(),
 
     /**
      * The list of workouts available
@@ -16,6 +18,13 @@ export default Service.extend({
      * @type {Array}
      */
     workouts: null,
+
+    /**
+     * The list of workouts in progress
+     *
+     * @type {Array}
+     */
+    workoutsInProgress: null,
 
     /**
      * Creates a workout
@@ -97,6 +106,27 @@ export default Service.extend({
         });
 
         this.set('workouts', transformedData);
+
+        // If there are workouts in progress
+        if (this.get('meRepository.me.hasWorkoutsInProgress')) {
+            const workoutsInProgress = yield this.get('store').query('workout-in-progress', {});
+            this.set('workoutsInProgress', (workoutsInProgress || []).map(inProgressItem => {
+                const workout = transformedData.find(item => get(item, 'id') === get(inProgressItem, 'workoutId'));
+
+                return {
+                    id: get(workout, 'id'),
+                    isDeleted: get(workout, 'isDeleted'),
+                    creatorId: get(workout, 'creatorId'),
+                    name: get(workout, 'name'),
+                    workoutTypeKey: get(workout, 'workoutTypeKey'),
+                    configuration: get(workout, 'configuration'),
+                    exerciseProgress: get(inProgressItem, 'exerciseProgress'),
+                    workoutInProgressId: get(inProgressItem, 'id'),
+                    workoutStartTime: get(inProgressItem, 'workoutStartTime')
+                };
+            }));
+        }
+
         return transformedData;
     }),
 
@@ -109,6 +139,7 @@ export default Service.extend({
         const data = yield this.get('store').createRecord('workoutlog', workoutLog);
         yield data.save();
         this.get('historyRepository.refreshList').perform();
+        this.get('workoutInProgressRepository.removeInProgressWorkoutRequest').perform();
     }),
 
     getLastLoggedWorkout: task(function* (workoutId) {
@@ -119,6 +150,27 @@ export default Service.extend({
         }
 
         return data;
+    }),
+
+    updateWorkoutsInProgress: task(function* () {
+        const data = yield this.get('store').peekAll('workout-in-progress');
+        const workouts = this.get('workouts');
+
+        this.set('workoutsInProgress', (data || []).map(inProgressItem => {
+            const workout = workouts.find(item => get(item, 'id') === get(inProgressItem, 'workoutId'));
+
+            return {
+                id: get(workout, 'id'),
+                isDeleted: get(workout, 'isDeleted'),
+                creatorId: get(workout, 'creatorId'),
+                name: get(workout, 'name'),
+                workoutTypeKey: get(workout, 'workoutTypeKey'),
+                configuration: get(workout, 'configuration'),
+                exerciseProgress: get(inProgressItem, 'exerciseProgress'),
+                workoutInProgressId: get(inProgressItem, 'id'),
+                workoutStartTime: get(inProgressItem, 'workoutStartTime')
+            };
+        }));
     }),
 
     /**

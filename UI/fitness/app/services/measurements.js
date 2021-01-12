@@ -25,7 +25,7 @@ export default Service.extend({
                     id: get(item, 'id'),
                     notes: get(item, 'notes'),
                     date: get(item, 'date'),
-                    image: get(item, 'image'),
+                    minImage: get(item, 'minImage'),
                     creatorId: get(item, 'creatorId')
                 };
             });
@@ -42,11 +42,15 @@ export default Service.extend({
      * Creates a progress photo
      */
     createProgressPhoto: task(function* (photoData) {
+        const imageData = yield this.get('compressImage').perform(photoData.image, 2000);
+        const minImageData = yield this.get('compressImage').perform(photoData.image, 1000);
+
         try {
             let progressPhoto = this.store.createRecord('progress-photo', {
                 notes: photoData.notes,
                 date: new Date(),
-                image: photoData.image
+                image: imageData,
+                minImage: minImageData
             });
 
             const data = yield progressPhoto.save();
@@ -55,7 +59,7 @@ export default Service.extend({
                 id: get(data, 'id'),
                 notes: get(data, 'notes'),
                 date: get(data, 'date'),
-                image: get(data, 'image'),
+                minImage: get(data, 'minImage'),
                 creatorId: get(data, 'creatorId')
             };
 
@@ -65,6 +69,44 @@ export default Service.extend({
         } catch (exception) {
             // error
         }
-    })
+    }),
 
+    compressImage: task(function* (base64, maxSize = 2000) {
+        const canvas = document.createElement('canvas')
+        const img = document.createElement('img')
+
+        return yield new Promise((resolve, reject) => {
+            img.onload = function () {
+                let width = img.width
+                let height = img.height
+                const maxHeight = maxSize
+                const maxWidth = maxSize
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height = Math.round((height *= maxWidth / width))
+                        width = maxWidth
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width = Math.round((width *= maxHeight / height))
+                        height = maxHeight
+                    }
+                }
+                canvas.width = width
+                canvas.height = height
+
+                const ctx = canvas.getContext('2d')
+                ctx.drawImage(img, 0, 0, width, height)
+
+                resolve(canvas.toDataURL('image/jpeg', 0.7))
+            }
+
+            img.onerror = function (err) {
+                reject(err)
+            }
+
+            img.src = base64
+        });
+    })
 });

@@ -124,13 +124,22 @@ const getMe = function(userId, callback) {
 
         if (meObject) {
             const userMeObject = {
+                id: meObject._id,
                 email: meObject.email,
                 fname: meObject.fname,
                 lname: meObject.lname,
                 username: meObject.username
             };
 
-            return callback(null, userMeObject);
+            db.getWorkoutInProgressByUserId(userId, (err, workoutsInProgress) => {
+                if (err) {
+                    return callback(err, null);
+                }
+
+                userMeObject.hasWorkoutsInProgress = workoutsInProgress.length > 0;
+
+                return callback(null, userMeObject);
+            });
         } else {
             return callback(common.getError(2001), null);
         }

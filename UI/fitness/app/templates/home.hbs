@@ -16,6 +16,26 @@
         </div>
 
         <div class="user-routines">
+            {{#if (gt workoutRepository.workoutsInProgress.length 0)}}
+                <div class="col-12 workouts-in-progress-title">
+                    {{t "homePage.routinesInProgerss"}}
+                </div>
+                {{#each workoutRepository.workoutsInProgress as | workoutInProgressItem |}}
+                    <a class="col-12 workout-item" {{action "openWorkoutInProgress" workoutInProgressItem}}>
+                        <div class="row no-margin name">
+                            {{workoutInProgressItem.name}}
+                        </div>
+                        <div class="row no-margin exercises">
+                            {{#each workoutInProgressItem.configuration.exercises as | exercise index |}}
+                                {{exercise.name}} ({{t (concat "exerciseEquipment." exercise.equipmentKey)}})
+                            {{/each}}
+                        </div>
+                    </a>
+                {{/each}}
+                <div class="col-12 workouts-in-progress-title">
+                    {{t "homePage.myRoutines"}}
+                </div>
+            {{/if}}
             {{#each workoutRepository.workouts as | workout |}}
                 {{#if (not workout.isDeleted)}}
                     <a class="col-12 workout-item" {{action "openWorkout" workout}}>

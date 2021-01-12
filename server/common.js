@@ -13,6 +13,7 @@ const config = require('./config.js');
  * 4000 -> workouts
  * 5000 -> workoutlogs
  * 6000 -> progress photos
+ * 7000 -> workout in progress
  */
 const errors = Object.freeze({
     // system
@@ -52,7 +53,16 @@ const errors = Object.freeze({
 
     // progress photos
     6000: 'failed to save progress photos, database issue',
-    6001: 'failed to get progress photos, database issue'
+    6001: 'failed to get progress photos, database issue',
+
+    // workout in progress
+    7000: 'failed to save workout in progress, database issue',
+    7001: 'failed to fine workout in progress, database issue',
+    7002: 'failed to edit workout in progress, database issue',
+    7003: 'failed to delete workout in progress, database issue',
+    7004: 'failed to find workout in progress by user id, database issue',
+    7005: 'failed to find workout in progress by id, database issue',
+    7005: 'failed to find workouts in progress by userId, database issue'
 });
 exports.errors = errors;
 
