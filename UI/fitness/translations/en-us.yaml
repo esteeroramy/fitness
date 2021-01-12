@@ -84,8 +84,10 @@ historyItemDetailModal:
 historyPage:
     title: 'History'
 homePage:
+    myRoutines: 'My Routines'
     routine: 'Routine'
     routines: 'Routines'
+    routinesInProgerss: 'Routines In Progress (Select To Continue)'
     title: 'Start Workout'
 loginPage:
     login: 'Login'

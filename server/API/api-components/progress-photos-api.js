@@ -15,11 +15,13 @@ const createProgressPhoto = (req, res) => {
         const notes = xss(req.body.notes);
         const date = xss(req.body.date);
         const image = req.body.image;
+        const minImage = req.body.minImage;
 
         const progressPhoto = {
             notes,
             date,
-            image
+            image,
+            minImage
         };
 
         progressPhotos.createProgressPhoto(userId, progressPhoto, (err, progressPhotoObject) => {

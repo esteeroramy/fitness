@@ -37,10 +37,12 @@ app.listen(config.port, () => {
 // <Get Requests> -----------------------------------------------
 app.get('/api/exercises', common.setVerificationToken, api.handleExercisesGetPath);
 app.get('/api/histories', common.setVerificationToken, api.handleHistoriesGetPath);
-app.get('/api/me', common.setVerificationToken, api.handleGetMePath);
+app.get('/api/me/:id', common.setVerificationToken, api.handleGetMePath);
 app.get('/api/progressPhotos', common.setVerificationToken, api.handleGetProgressPhotosPath);
 app.get('/api/workoutlogs/:id', common.setVerificationToken, api.handleLatestWorkoutslogsGetPath);
 app.get('/api/workouts', common.setVerificationToken, api.handleWorkoutsGetPath);
+app.get('/api/workoutInProgresses', common.setVerificationToken, api.handleWorkoutInProgressGetAllPath);
+app.get('/api/workoutInProgresses/:id', common.setVerificationToken, api.handleWorkoutInProgressGetPath);
 // app.get('/api/users/profile', common.setVerificationToken, api.handleUsersGetProfilePath);
 // </Get Requests> -----------------------------------------------
 
@@ -51,15 +53,18 @@ app.post('/api/users/create', api.handleUsersCreatePath);
 app.post('/api/workoutlogs', common.setVerificationToken, api.handleWorkoutsLogPath);
 app.post('/api/progressphotos', common.setVerificationToken, api.handleCreateProgressPhotosPath);
 app.post('/api/workouts', common.setVerificationToken, api.handleWorkoutsCreatePath);
+app.post('/api/workoutInProgresses', common.setVerificationToken, api.handleWorkoutInProgressCreatePath);
 // </Post Requests> -----------------------------------------------
 
 // <Put Requests> -----------------------------------------------
 // app.post('/api/users/updatePassword', common.setVerificationToken, api.handleUsersUpdatePassword);
 // app.post('/api/users/updateProfile', common.setVerificationToken, api.handleUsersUpdateProfile);
 app.put('/api/workouts/:id', common.setVerificationToken, api.handleWorkoutsEditPath);
+app.put('/api/workoutInProgresses/:id', common.setVerificationToken, api.handleWorkoutInProgressEditPath);
 // </Put Requests> -----------------------------------------------
 
 // <Delete Requests> -----------------------------------------------
 app.delete('/api/histories/:id', common.setVerificationToken, api.handleHistoriesDeletePath);
 app.delete('/api/workouts/:id', common.setVerificationToken, api.handleWorkoutsDeletePath);
+app.delete('/api/workoutInProgresses/:id', common.setVerificationToken, api.handleWorkoutInProgressDeletePath);
 // </Delete Requests> -----------------------------------------------

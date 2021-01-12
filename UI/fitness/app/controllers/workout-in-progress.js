@@ -17,8 +17,23 @@ export default Controller.extend({
         this.transitionToRoute('home');
     }),
 
+    saveInProgressWorkout: task(function* () {
+        const workout = this.get('workoutInProgressRepository.workout');
+        const exerciseProgress = this.get('workoutInProgressRepository.exerciseProgress');
+        const workoutStartTime = this.get('workoutInProgressRepository.workoutStartTime');
+
+        const configuration = {
+            workoutId: get(workout, 'id'),
+            workoutStartTime,
+            exerciseProgress
+        };
+
+        yield this.get('workoutInProgressRepository.saveInProgressWorkout').perform(configuration);
+    }),
+
     actions: {
         cancelWorkout() {
+            this.get('workoutInProgressRepository.removeInProgressWorkoutRequest').perform();
             this.get('workoutInProgressRepository').cancelWorkout();
             this.transitionToRoute('home');
         },
@@ -57,6 +72,10 @@ export default Controller.extend({
             };
 
             this.get('logworkout').perform(workoutLog);
+        },
+
+        fieldChanged() {
+            this.get('saveInProgressWorkout').perform();
         }
     }
 });

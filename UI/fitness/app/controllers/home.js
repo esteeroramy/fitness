@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
     enums: service(),
+    workoutInProgressRepository: service(),
     workoutRepository: service(),
 
     /**
@@ -33,6 +34,11 @@ export default Controller.extend({
                 isWorkoutOverviewModalVisible: true,
                 selectedWorkout: workout,
             });
+        },
+
+        openWorkoutInProgress(workout) {
+            this.get('workoutInProgressRepository.resumeInProgressWorkout').perform(workout),
+            this.send('transitionToWorkoutInProgress');
         },
 
         closeWorkoutOverviewModal() {

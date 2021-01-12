@@ -21,7 +21,7 @@ const createProgressPhoto = function(userId, progressPhoto, callback) {
             creatorId: progressPhotoObject.creatorId,
             notes: progressPhotoObject.notes,
             date: progressPhotoObject.date,
-            image: progressPhotoObject.image
+            minImage: progressPhotoObject.minImage
         };
 
         return callback(null, progressPhotoObjectToReturn);
@@ -46,7 +46,7 @@ const getProgressPhotos = function(userId, callback) {
                 creatorId: item.creatorId,
                 notes: item.notes,
                 date: item.date,
-                image: item.image
+                minImage: item.minImage
             }
         });
 

@@ -122,9 +122,9 @@ const getProfile = (req, res) => {
 
 /**
  * Gets the me object of the user
- * 
- * @param {Object} req 
- * @param {Object} res 
+ *
+ * @param {Object} req
+ * @param {Object} res
  */
 const me = (req, res) => {
     common.verifyToken (req, res, (req, res) => {

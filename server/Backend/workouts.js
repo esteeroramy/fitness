@@ -28,8 +28,6 @@ const createWorkout = function(userId, workoutObject, callback) {
  * @param {Function} callback
  */
 const editWorkout = function(workoutId, workoutObject, callback) {
-    workoutObject._id = common.getUUID();
-
     db.editWorkout(workoutId, workoutObject, (err, workoutObject) => {
         if (err) {
             return callback(err, null);

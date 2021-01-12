@@ -21,12 +21,39 @@
             text-align: center;
         }
 
-        .save-workout {
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-            margin: 0;
-            padding: 2px 15px;
+        .status-section {
+            color: $primary-accent-color;
+            height: 20px;
+            text-align: center;
+            width: 20px;
+
+            .preloader-wrapper {
+                height: 20px;
+                margin-top: 4px;
+                width: 20px;
+            }
+
+            i {
+                margin-top: 3px;
+            }
+
+            &.error {
+                i {
+                    color: $delete-text-color;
+                }
+            }
+        }
+
+        .save-workout-section {
+            padding-left: 0;
+
+            .save-workout {
+                border-radius: 5px;
+                box-sizing: border-box;
+                font-size: 16px;
+                margin: 0;
+                padding: 2px 15px;
+            }
         }
 
         .row {

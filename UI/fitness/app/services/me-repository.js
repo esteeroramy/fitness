@@ -4,6 +4,7 @@ import { task } from 'ember-concurrency';
 
 export default Service.extend({
     store: service(),
+    session: service(),
 
     /**
      * Me data
@@ -17,7 +18,7 @@ export default Service.extend({
      */
     getMeCall: task(function* () {
         try {
-            const data = yield this.get('store').query('me', {});
+            const data = yield this.get('store').findRecord('me', 0);
 
             this.set('me', data);
         } catch (exception) {

@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { get, set } from '@ember/object';
+import { get, observer, set } from '@ember/object';
 
 export default Component.extend({
     classNames: ['workout-in-progress-exercise-editor'],
@@ -17,6 +17,13 @@ export default Component.extend({
      * @type {Boolean}
      */
     isNotesVisible: false,
+
+    fieldChanged: observer(
+        'exercise.sets.@each.{weight,reps,done}',
+        'exercise.notes',
+        function() {
+            this.onFieldChanged();
+    }),
 
     actions: {
         toggleSet(workoutSet) {

@@ -36,11 +36,11 @@ export default Controller.extend({
     allPhotos: computed('measurements.photoData.[]', function() {
         return (this.get('measurements.photoData') || []).map(item => {
             const image = new Image();
-            image.src = `data:image/png;base64,${item.image}`;
+            image.src = `data:image/png;base64,${item.minImage}`;
             let date = new Date(Date.parse(item.date));
 
             return {
-                src: `data:image/png;base64,${item.image}`,
+                src: `data:image/png;base64,${item.minImage}`,
                 w: image.width,
                 h: image.height,
                 title: date.toDateString(),

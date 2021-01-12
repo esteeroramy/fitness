@@ -33,16 +33,21 @@ const createProgressPhoto = function(userId, progressPhotoObject, callback) {
 
     fs.writeFileSync(filePath, CryptoJS.AES.encrypt(base64Data, 'random password').toString(), 'base64');
 
+    const minFilePath = `${progressPhotosDir}/min${progressPhotoObject._id}.png`;
+    const minBase64Data = progressPhotoObject.minImage.replace(/^data:image\/(.*);base64,/, "");
+
+    fs.writeFileSync(minFilePath, CryptoJS.AES.encrypt(minBase64Data, 'random password').toString(), 'base64');
+
     newProgressPhoto.save(function(err) {
         if (err) {
             return callback(common.getError(6000), null);
         }
 
-        const fileData = fs.readFileSync(filePath, { encoding: 'base64' });
+        const fileData = fs.readFileSync(minFilePath, { encoding: 'base64' });
         const bytes = CryptoJS.AES.decrypt(fileData, 'random password');
         const originalText = bytes.toString(CryptoJS.enc.Utf8);
 
-        newProgressPhoto.image = originalText;
+        newProgressPhoto.minImage = originalText;
 
         return callback(null, newProgressPhoto);
     });
@@ -71,12 +76,12 @@ const getProgressPhotos = function(creatorId, callback) {
         }
 
         const promises = progressPhotos.map(item => {
-            return readFromFile(`${progressPhotosDir}/${item._id}.png`);
-        })
+            return readFromFile(`${progressPhotosDir}/min${item._id}.png`);
+        });
 
         Promise.all(promises).then(result => {
             result.forEach((image, index) => {
-                progressPhotos[index].image = image;
+                progressPhotos[index].minImage = image;
             });
 
             return callback(null, progressPhotos);

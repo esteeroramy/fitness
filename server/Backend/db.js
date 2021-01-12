@@ -7,6 +7,7 @@ const db_users = require('./dbs/db-users.js');
 const db_workouts = require('./dbs/db-workouts.js');
 const db_workoutlogs = require('./dbs/db-workoutlogs.js');
 const db_progress_photos = require('./dbs/db-progress-photos.js');
+const db_workout_in_progress = require('./dbs/db-workout-in-progress');
 
 const exercise = require('./dbs/models/exercise');
 
@@ -220,3 +221,12 @@ exports.deleteHistories = db_workoutlogs.deleteHistories;
 exports.createProgressPhoto = db_progress_photos.createProgressPhoto;
 exports.getProgressPhotos = db_progress_photos.getProgressPhotos;
 // </Workoutlog Collection> -------------------------------------------------
+
+// <WorkoutInProgress Collection> -------------------------------------------------
+exports.createWorkoutInProgress = db_workout_in_progress.createWorkoutInProgress;
+exports.editWorkoutInProgress = db_workout_in_progress.editWorkoutInProgress;
+exports.deleteWorkoutInProgress = db_workout_in_progress.deleteWorkoutInProgress;
+exports.getWorkoutInProgressByUserId = db_workout_in_progress.getWorkoutInProgressByUserId;
+exports.getWorkoutInProgressById = db_workout_in_progress.getWorkoutInProgressById;
+exports.getAllWorkoutsInProgress = db_workout_in_progress.getAllWorkoutsInProgress;
+// </WorkoutInProgress Collection> -------------------------------------------------
