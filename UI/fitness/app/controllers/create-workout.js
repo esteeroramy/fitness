@@ -185,6 +185,22 @@ export default Controller.extend({
         exit() {
             this.reset();
             this.transitionToRoute('home');
+        },
+
+        moveUp(index) {
+            const exercises = this.get('exercises');
+            const toMove = exercises[index];
+
+            exercises.replace(index, 1, [exercises[index - 1]]);
+            exercises.replace(index - 1, 1, [toMove]);
+        },
+
+        moveDown(index) {
+            const exercises = this.get('exercises');
+            const toMove = exercises[index];
+
+            exercises.replace(index, 1, [exercises[index + 1]]);
+            exercises.replace(index + 1, 1, [toMove]);
         }
     }
 });

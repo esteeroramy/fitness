@@ -22,9 +22,14 @@
             {{input class="ui-primary-input" type="text" placeholder=(t "createWorkoutPage.workoutName") value=workoutName}}
         </div>
         <div class="exercise-list">
-            {{#each exercises as | exercise |}}
+            {{#each exercises as | exercise index |}}
                 {{create-workout-exercise-editor
+                    index=index
                     exercise=exercise
+                    canMoveUp=(if (not (eq index 0)) true false)
+                    canMoveDown=(if (not (eq index (sub exercises.length 1))) true false)
+                    onMoveUp=(action "moveUp")
+                    onMoveDown=(action "moveDown")
                     onDeleteExercise=(action "deleteExercise")}}
             {{/each}}
         </div>

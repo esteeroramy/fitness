@@ -150,6 +150,21 @@
     }
 }
 
+.ui-plain-button {
+    color: $primary-text-color;
+    display: inline-flex;
+    font-size: 16px;
+    min-height: 25px;
+    padding: 1px 5px;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: $primary-text-color;
+        text-decoration: none;
+    }
+}
+
 .ui-primary-input {
     background-color: $accent-background-color !important;
     border: 0px !important;
