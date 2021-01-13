@@ -21,7 +21,18 @@
         <div class="col-2 no-padding text-align-center">
             <span>{{t "createWorkoutExerciseEditor.maxRest"}}</span>
         </div>
-        <div class="col-2 no-padding text-align-center"></div>
+        <div class="col-2 no-padding text-align-center">
+            {{#if canMoveUp}}
+                <div class="up-arrow">
+                    <a class="ui-plain-button" onClick={{action "moveUp"}}>{{md-icon "keyboard_arrow_up"}}</a>
+                </div>
+            {{/if}}
+            {{#if canMoveDown}}
+                <div class="down-arrow">
+                    <a class="ui-plain-button {{if canMoveUp "" "lower"}}" onClick={{action "moveDown"}}>{{md-icon "keyboard_arrow_down"}}</a>
+                </div>
+            {{/if}}
+        </div>
     </div>
     {{#each exercise.sets as | set index |}}
         <div class="row no-padding set-row">

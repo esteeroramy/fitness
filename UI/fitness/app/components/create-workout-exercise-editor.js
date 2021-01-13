@@ -10,6 +10,13 @@ export default Component.extend({
      */
     exercise: null,
 
+    /**
+     * The index in the list
+     *
+     * @type {Number}
+     */
+    index: 0,
+
     actions: {
         addSet() {
             this.set('exercise.sets', (this.get('exercise.sets') || []).concat({
@@ -27,6 +34,14 @@ export default Component.extend({
 
         deleteExercise() {
             this.onDeleteExercise(this.get('exercise'));
+        },
+
+        moveUp() {
+            this.onMoveUp(this.get('index'));
+        },
+
+        moveDown() {
+            this.onMoveDown(this.get('index'));
         }
     }
 });
